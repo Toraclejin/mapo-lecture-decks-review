@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>표지 — 무신사 성수 (실사)</title>
+<style>
+@font-face{ font-family:'Pretendard Variable'; font-weight:45 920; font-style:normal;
+  font-display:swap; src:url('../_assets/PretendardVariable.woff2') format('woff2-variations'); }
+*{ box-sizing:border-box; margin:0; padding:0; }
+body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+  background:#26221E; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px; }
+.serif{ font-family:Georgia,'Times New Roman',serif; }
+.cover{ position:relative; width:100%; max-width:720px; aspect-ratio:4/5; overflow:hidden;
+  border-radius:6px; box-shadow:0 24px 70px rgba(0,0,0,.5); }
+.cover img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:52% 40%;
+  /* 그레이딩 — 밋밋한 흐린날 → 에디토리얼 */
+  filter:contrast(1.1) saturate(.94) brightness(.98); }
+/* 미묘한 웜-쿨 그레이드 */
+.grade{ position:absolute; inset:0; z-index:1; mix-blend-mode:soft-light;
+  background:linear-gradient(180deg,#4a6a86 0%,transparent 45%,#7a4a30 100%); opacity:.5; }
+.scrim{ position:absolute; inset:0; z-index:2;
+  background:linear-gradient(180deg,rgba(16,14,12,.46) 0%,rgba(16,14,12,0) 22%,rgba(16,14,12,.05) 50%,rgba(16,14,12,.82) 100%); }
+.in{ position:absolute; inset:0; z-index:3; padding:clamp(24px,4vw,44px);
+  display:flex; flex-direction:column; justify-content:space-between; color:#F6F1E9; }
+.mast{ display:flex; justify-content:space-between; align-items:baseline; }
+.mast .m{ font-weight:850; font-size:clamp(15px,2.4vw,20px); letter-spacing:-.01em; text-shadow:0 1px 12px rgba(0,0,0,.5); }
+.mast .i{ font-size:11.5px; letter-spacing:.11em; color:#E4DBCD; font-weight:700; text-shadow:0 1px 8px rgba(0,0,0,.6); }
+.btm h1{ font-size:clamp(40px,9vw,74px); line-height:.98; font-weight:880; letter-spacing:-.04em;
+  text-shadow:0 3px 30px rgba(0,0,0,.55); }
+.btm h1 em{ font-style:normal; color:#E4906A; }
+.lines{ margin-top:16px; display:flex; flex-direction:column; gap:8px; max-width:34ch; }
+.lines div{ font-size:clamp(13px,2vw,16px); font-weight:650; text-shadow:0 1px 12px rgba(0,0,0,.6); }
+.lines b{ color:#EDAF8D; font-weight:800; margin-right:9px; }
+</style></head>
+<body>
+<div class="cover">
+  <img src="../이미지/포폴/성수_표지.jpg" alt="무신사 스토어 성수 — 옛 벽돌 창고">
+  <div class="grade"></div>
+  <div class="scrim"></div>
+  <div class="in">
+    <div class="mast"><div class="m">성수 역설계</div><div class="i serif">FIELD NOTES 01 · SEONGSU · 2026.07.04</div></div>
+    <div class="btm">
+      <h1>지붕을 벗긴 <em>백화점</em></h1>
+      <div class="lines">
+        <div><b>01</b> 팬이 향을 못 맡고 나온 5분</div>
+        <div><b>02</b> 게이트가 곧 상품이 되는 동네</div>
+        <div><b>03</b> 다이칸야마가 말하는, 성수의 «다음»</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>
