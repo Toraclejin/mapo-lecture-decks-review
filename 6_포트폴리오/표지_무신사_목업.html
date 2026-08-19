@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>표지 목업 — 무신사 창고</title>
+<style>
+@font-face{ font-family:'Pretendard Variable'; font-weight:45 920; font-style:normal;
+  font-display:swap; src:url('../_assets/PretendardVariable.woff2') format('woff2-variations'); }
+*{ box-sizing:border-box; margin:0; padding:0; }
+body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+  background:#26221E; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px; }
+.serif{ font-family:Georgia,'Times New Roman',serif; }
+.cover{ position:relative; width:100%; max-width:1000px; aspect-ratio:16/10; overflow:hidden;
+  border-radius:6px; box-shadow:0 24px 70px rgba(0,0,0,.45); }
+.cover svg{ position:absolute; inset:0; width:100%; height:100%; }
+/* 그레이딩 스크림 — 아래 어둡게(제목), 위 살짝(마스트헤드) */
+.scrim{ position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg,rgba(18,16,14,.52) 0%,rgba(18,16,14,.06) 26%,rgba(18,16,14,.10) 52%,rgba(18,16,14,.90) 100%); }
+.in{ position:absolute; inset:0; z-index:2; padding:clamp(26px,4vw,50px);
+  display:flex; flex-direction:column; justify-content:space-between; color:#F4EFE8; }
+.mast{ display:flex; justify-content:space-between; align-items:baseline; }
+.mast .m{ font-weight:850; font-size:clamp(15px,2vw,20px); letter-spacing:-.01em; }
+.mast .i{ font-size:12px; letter-spacing:.13em; color:#D7CEC2; font-weight:700; }
+.btm h1{ font-size:clamp(36px,7vw,80px); line-height:.98; font-weight:880; letter-spacing:-.04em;
+  text-shadow:0 2px 24px rgba(0,0,0,.4); }
+.btm h1 em{ font-style:normal; color:#E4906A; }   /* 벽돌 계열 악센트 = 팔레트 C */
+.lines{ margin-top:16px; display:flex; flex-direction:column; gap:8px; max-width:32ch; }
+.lines div{ font-size:clamp(13px,1.8vw,17px); font-weight:650; text-shadow:0 1px 10px rgba(0,0,0,.5); }
+.lines b{ color:#E9A987; font-weight:800; margin-right:9px; }
+.mk{ position:absolute; top:12px; left:50%; transform:translateX(-50%); z-index:3;
+  font-size:11px; letter-spacing:.04em; color:#F4EFE8; background:rgba(18,16,14,.5); padding:4px 10px; border-radius:20px; }
+</style></head>
+<body>
+<div class="cover">
+  <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#C8CDD3"/><stop offset="1" stop-color="#AFB4BB"/>
+      </linearGradient>
+      <linearGradient id="brick" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#7C4A3B"/><stop offset="1" stop-color="#5E362B"/>
+      </linearGradient>
+      <linearGradient id="tower" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#C4C7CB"/><stop offset="1" stop-color="#9BA0A6"/>
+      </linearGradient>
+      <radialGradient id="vig" cx="50%" cy="42%" r="75%">
+        <stop offset="60%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.32"/>
+      </radialGradient>
+      <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer></filter>
+    </defs>
+
+    <rect width="800" height="500" fill="url(#sky)"/>
+    <!-- 뒤 아파트 타워 (옛/새 대비) -->
+    <g fill="url(#tower)">
+      <rect x="40" y="120" width="150" height="290"/>
+      <rect x="640" y="150" width="130" height="260"/>
+    </g>
+    <g fill="#7E858C" opacity="0.6">
+      <g><rect x="48" y="134" width="39" height="10"/><rect x="95" y="134" width="39" height="10"/><rect x="143" y="134" width="39" height="10"/><rect x="48" y="156" width="39" height="10"/><rect x="95" y="156" width="39" height="10"/><rect x="143" y="156" width="39" height="10"/><rect x="48" y="178" width="39" height="10"/><rect x="95" y="178" width="39" height="10"/><rect x="143" y="178" width="39" height="10"/><rect x="48" y="200" width="39" height="10"/><rect x="95" y="200" width="39" height="10"/><rect x="143" y="200" width="39" height="10"/><rect x="48" y="222" width="39" height="10"/><rect x="95" y="222" width="39" height="10"/><rect x="143" y="222" width="39" height="10"/><rect x="48" y="244" width="39" height="10"/><rect x="95" y="244" width="39" height="10"/><rect x="143" y="244" width="39" height="10"/><rect x="48" y="266" width="39" height="10"/><rect x="95" y="266" width="39" height="10"/><rect x="143" y="266" width="39" height="10"/><rect x="48" y="288" width="39" height="10"/><rect x="95" y="288" width="39" height="10"/><rect x="143" y="288" width="39" height="10"/><rect x="48" y="310" width="39" height="10"/><rect x="95" y="310" width="39" height="10"/><rect x="143" y="310" width="39" height="10"/><rect x="48" y="332" width="39" height="10"/><rect x="95" y="332" width="39" height="10"/><rect x="143" y="332" width="39" height="10"/><rect x="48" y="354" width="39" height="10"/><rect x="95" y="354" width="39" height="10"/><rect x="143" y="354" width="39" height="10"/><rect x="48" y="376" width="39" height="10"/><rect x="95" y="376" width="39" height="10"/><rect x="143" y="376" width="39" height="10"/></g><g><rect x="648" y="164" width="33" height="10"/><rect x="689" y="164" width="33" height="10"/><rect x="729" y="164" width="33" height="10"/><rect x="648" y="186" width="33" height="10"/><rect x="689" y="186" width="33" height="10"/><rect x="729" y="186" width="33" height="10"/><rect x="648" y="208" width="33" height="10"/><rect x="689" y="208" width="33" height="10"/><rect x="729" y="208" width="33" height="10"/><rect x="648" y="230" width="33" height="10"/><rect x="689" y="230" width="33" height="10"/><rect x="729" y="230" width="33" height="10"/><rect x="648" y="252" width="33" height="10"/><rect x="689" y="252" width="33" height="10"/><rect x="729" y="252" width="33" height="10"/><rect x="648" y="274" width="33" height="10"/><rect x="689" y="274" width="33" height="10"/><rect x="729" y="274" width="33" height="10"/><rect x="648" y="296" width="33" height="10"/><rect x="689" y="296" width="33" height="10"/><rect x="729" y="296" width="33" height="10"/><rect x="648" y="318" width="33" height="10"/><rect x="689" y="318" width="33" height="10"/><rect x="729" y="318" width="33" height="10"/><rect x="648" y="340" width="33" height="10"/><rect x="689" y="340" width="33" height="10"/><rect x="729" y="340" width="33" height="10"/><rect x="648" y="362" width="33" height="10"/><rect x="689" y="362" width="33" height="10"/><rect x="729" y="362" width="33" height="10"/></g>
+    </g>
+    <!-- 전깃줄 -->
+    <g stroke="#20242A" stroke-width="1.6" opacity="0.7">
+      <line x1="0" y1="70" x2="800" y2="120"/><line x1="0" y1="100" x2="800" y2="86"/><line x1="0" y1="140" x2="800" y2="180"/>
+    </g>
+    <!-- 앞 벽돌 창고 (박공 지붕) -->
+    <g>
+      <path d="M210 500 L210 250 L470 170 L730 250 L730 500 Z" fill="url(#brick)"/>
+      <!-- 지붕 검은 띠 -->
+      <path d="M205 252 L470 170 L735 252 L735 268 L470 188 L205 268 Z" fill="#1B1714"/>
+      <!-- 벽돌 줄눈 -->
+      <g stroke="#3E241C" stroke-width="1.4" opacity="0.5">
+        <line x1="210" y1="290" x2="730" y2="290"/><line x1="210" y1="320" x2="730" y2="320"/>
+        <line x1="210" y1="350" x2="730" y2="350"/><line x1="210" y1="380" x2="730" y2="380"/>
+        <line x1="210" y1="410" x2="730" y2="410"/><line x1="210" y1="440" x2="730" y2="440"/>
+      </g>
+      <!-- 흰 브랜드 표기(작게, 실루엣) -->
+      <rect x="250" y="300" width="120" height="30" fill="#141210"/>
+      <text x="262" y="322" font-family="Georgia,serif" font-size="20" font-weight="700" fill="#F2EEE8" letter-spacing="2">MSS</text>
+      <!-- 검은 세로 간판 -->
+      <rect x="600" y="250" width="52" height="150" fill="#141210"/>
+      <text x="626" y="332" font-family="Pretendard,sans-serif" font-size="19" font-weight="800" fill="#F2EEE8"
+            text-anchor="middle" transform="rotate(90 626 332)" letter-spacing="3">STORE</text>
+      <!-- 아이비 -->
+      <g fill="#3E5A3B" opacity="0.85"><ellipse cx="715" cy="300" rx="26" ry="60"/><ellipse cx="700" cy="360" rx="20" ry="50"/></g>
+      <!-- 출입구 -->
+      <rect x="430" y="410" width="90" height="90" fill="#0E0B09"/>
+      <rect x="437" y="418" width="76" height="82" fill="#2A2622"/>
+    </g>
+    <!-- 바닥 -->
+    <rect x="0" y="486" width="800" height="14" fill="#151311"/>
+    <rect width="800" height="500" fill="url(#vig)"/>
+    <rect width="800" height="500" filter="url(#grain)"/>
+  </svg>
+
+  <div class="scrim"></div>
+  <div class="mk">샘플 일러스트(#17 무신사 재현) — 실제 사진으로 교체</div>
+  <div class="in">
+    <div class="mast"><div class="m">성수 역설계</div><div class="i serif">FIELD NOTES 01 · SEONGSU · 2026.07.04</div></div>
+    <div class="btm">
+      <h1>지붕을 벗긴 <em>백화점</em></h1>
+      <div class="lines">
+        <div><b>01</b> 팬이 향을 못 맡고 나온 5분</div>
+        <div><b>02</b> 게이트가 곧 상품이 되는 동네</div>
+        <div><b>03</b> 다이칸야마가 말하는, 성수의 «다음»</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>
