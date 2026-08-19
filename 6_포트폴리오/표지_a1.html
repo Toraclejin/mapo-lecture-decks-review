@@ -1,0 +1,95 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>안1 · 미니멀 대형 타이포</title><style>
+@font-face{ font-family:'Pretendard Variable'; font-weight:45 920; font-style:normal;
+  font-display:swap; src:url('../_assets/PretendardVariable.woff2') format('woff2-variations'); }
+:root{
+  --paper:#FBFAF8; --ink:#14110E; --ink2:#2E2A24; --mut:#6E655A; --faint:#8A8074;
+  --rule:#E4DED4; --och:#A8431F; --ochbg:#F4E6DF; --cream:#F4F1EB;
+}
+*{ box-sizing:border-box; margin:0; padding:0; }
+body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+  background:#2A2622; color:var(--ink); -webkit-text-size-adjust:100%; }
+.serif{ font-family:Georgia,'Times New Roman',serif; }
+
+/* 시안 라벨 바 */
+.optbar{ background:#2A2622; color:#EDE7DD; padding:26px clamp(20px,5vw,64px) 10px;
+  max-width:1040px; margin:0 auto; }
+.optbar .n{ font-size:13px; font-weight:800; letter-spacing:.18em; color:#D98A5E; }
+.optbar .t{ font-size:19px; font-weight:750; margin-top:4px; }
+.optbar .d{ font-size:14px; color:#A69C8E; margin-top:4px; line-height:1.55; }
+.hint{ max-width:1040px; margin:0 auto; padding:34px clamp(20px,5vw,64px);
+  color:#C9BFB0; font-size:14.5px; line-height:1.7; }
+.hint b{ color:#F0E9DE; }
+
+.stage{ max-width:1040px; margin:0 auto 44px; padding:0 clamp(20px,5vw,64px); }
+.cover{ position:relative; overflow:hidden; border-radius:6px; box-shadow:0 20px 60px rgba(0,0,0,.35);
+  aspect-ratio:16/10; background:var(--paper); }
+@media(max-width:640px){ .cover{ aspect-ratio:3/4; } }
+
+.ill{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+.illcap{ position:absolute; left:50%; transform:translateX(-50%); top:12px; z-index:4; font-size:11px; letter-spacing:.04em; color:#F6F1E9; background:rgba(20,17,14,.5); padding:4px 9px; border-radius:20px; }
+/* 공통 이미지 자리 */
+.ph{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  color:var(--faint); font-size:13px; letter-spacing:.06em;
+  background:repeating-linear-gradient(45deg,#EFEAE2,#EFEAE2 14px,#E7E1D7 14px,#E7E1D7 28px); }
+
+/* ── 안 1 · 미니멀 대형 타이포 (Kinfolk/Monocle) ── */
+.c1{ background:var(--paper); padding:clamp(28px,4vw,52px); display:flex; flex-direction:column; }
+.c1 .top{ display:flex; justify-content:space-between; align-items:baseline;
+  border-bottom:1.5px solid var(--ink); padding-bottom:14px; }
+.c1 .mast{ font-weight:850; font-size:clamp(14px,1.7vw,17px); letter-spacing:-.01em; }
+.c1 .iss{ font-size:12.5px; letter-spacing:.14em; color:var(--mut); font-weight:700; }
+.c1 .mid{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:6% 0; }
+.c1 .kick{ font-size:clamp(13px,1.6vw,15px); letter-spacing:.16em; color:var(--och);
+  font-weight:800; text-transform:uppercase; margin-bottom:min(3.5vw,26px); }
+.c1 h1{ font-size:clamp(40px,8.4vw,104px); line-height:.98; font-weight:880; letter-spacing:-.045em; }
+.c1 h1 em{ font-style:normal; color:var(--och); }
+.c1 .deck{ margin-top:min(3.4vw,26px); font-size:clamp(16px,2.1vw,23px); color:var(--ink2);
+  font-weight:600; max-width:26ch; line-height:1.4; }
+.c1 .bot{ display:flex; gap:26px; flex-wrap:wrap; font-size:12.5px; color:var(--faint);
+  font-weight:600; border-top:1px solid var(--rule); padding-top:14px; }
+.c1 .bot b{ color:var(--ink2); }
+
+/* ── 안 2 · 풀블리드 이미지 + 커버라인 (잡지 표지) ── */
+.mag .ph{ background:#1C1815; }
+.mag .ph span{ opacity:.5; color:#EDE7DD; }
+.mag .scrim{ position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(15,12,10,.62) 0%,rgba(15,12,10,.18) 34%,rgba(15,12,10,.20) 60%,rgba(15,12,10,.86) 100%); }
+.in.c2{ position:absolute; inset:0; padding:clamp(26px,4vw,48px); display:flex; flex-direction:column;
+  justify-content:space-between; color:#F6F1E9; z-index:2; }
+.c2 .mast{ display:flex; justify-content:space-between; align-items:baseline; }
+.c2 .mast .m{ font-weight:850; font-size:clamp(15px,1.9vw,19px); letter-spacing:-.01em; }
+.c2 .mast .i{ font-size:12px; letter-spacing:.14em; color:#D9CFC0; font-weight:700; }
+.c2 .btm h1{ font-size:clamp(34px,6.4vw,74px); line-height:1.0; font-weight:870; letter-spacing:-.04em; }
+.c2 .btm h1 em{ font-style:normal; color:#E8916A; }
+.c2 .lines{ margin-top:18px; display:flex; flex-direction:column; gap:9px; max-width:30ch; }
+.c2 .lines div{ font-size:clamp(14px,1.9vw,18px); font-weight:650; line-height:1.35; }
+.c2 .lines b{ color:#F0B48F; font-weight:800; margin-right:8px; }
+
+/* ── 안 3 · 컬러블록 편집 그리드 (도록/룩북) ── */
+.c3{ display:grid; grid-template-columns:1fr 1fr; }
+@media(max-width:640px){ .c3{ grid-template-columns:1fr; grid-template-rows:1fr 1fr; } }
+.c3 .left{ background:var(--och); color:#FCEDE4; padding:clamp(26px,3.4vw,46px);
+  display:flex; flex-direction:column; justify-content:space-between; }
+.c3 .fn{ font-size:12.5px; letter-spacing:.2em; font-weight:800; opacity:.9; }
+.c3 .big{ font-size:clamp(74px,13vw,150px); line-height:.86; font-weight:880; letter-spacing:-.04em; }
+.c3 h1{ font-size:clamp(30px,4.6vw,50px); line-height:1.02; font-weight:850; letter-spacing:-.035em; }
+.c3 h1 em{ font-style:normal; color:#1C120E; }
+.c3 .meta{ font-size:12px; line-height:1.7; opacity:.92; font-weight:600; }
+.c3 .right{ position:relative; background:var(--cream); }
+.c3 .right .lbl{ position:absolute; left:0; bottom:0; right:0; padding:16px 20px;
+  background:linear-gradient(0deg,rgba(20,17,14,.78),transparent); color:#F6F1E9;
+  font-size:13px; font-weight:650; }
+.c3 .deck{ font-size:clamp(14px,1.8vw,17px); font-weight:600; line-height:1.4; opacity:.95; max-width:24ch; }
+</style><style>body{background:#2A2622;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}.stage{margin:0!important;width:100%;max-width:1000px;padding:0!important}.cover{aspect-ratio:16/10!important}</style></head><body>
+<div class="stage" id="a1" style="scroll-margin-top:0"><div class="cover c1">
+  <div class="top"><div class="mast">성수 역설계 <span style="color:var(--mut);font-weight:600">/ Field Study</span></div>
+    <div class="iss serif">ISSUE 01 · 2026.07</div></div>
+  <div class="mid">
+    <div class="kick">Reverse-Engineering Field Study</div>
+    <h1>완성된 거리에서,<br><em>결정</em>을 거꾸로 읽다</h1>
+    <div class="deck">한 번의 답사를 — 회사를 읽는 «눈»의 증명으로.</div>
+  </div>
+  <div class="bot"><span><b>대상</b> 서울 성수동</span><span><b>일시</b> 2026.07.04 (토)</span>
+    <span><b>방법</b> 역설계 4축 · 관찰 3종</span><span><b>관찰</b> 김성진</span></div>
+</div></div>
+</body></html>
