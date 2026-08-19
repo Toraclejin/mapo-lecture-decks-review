@@ -126,6 +126,18 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
 .transfer .r{ display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--rule); }
 .transfer .r>div{ padding:14px 18px; font-size:15.5px; }
 .transfer .q1{ color:var(--mut); } .transfer .q2{ color:var(--ink); font-weight:750; background:var(--card); }
+
+/* 사진 자리 — 파일 있으면 뜨고, 없으면 점선 자리표시자(깨진 아이콘 방지) · 출처 캡션 */
+.fig{ margin:26px 0; }
+.fig .frame{ position:relative; border-radius:12px; overflow:hidden; border:1px solid var(--rule); }
+.fig img{ display:block; width:100%; height:auto; }
+.fig .ph{ aspect-ratio:16/10; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px;
+  text-align:center; padding:22px; color:var(--faint);
+  background:repeating-linear-gradient(45deg,#FBFAF8,#FBFAF8 13px,#F1EDE6 13px,#F1EDE6 26px); }
+.fig .ph b{ color:var(--red); font-size:12.5px; font-weight:800; letter-spacing:.08em; }
+.fig .ph span{ font-size:14.5px; max-width:34ch; line-height:1.5; }
+.fig figcaption{ margin-top:9px; font-size:13px; color:var(--faint); line-height:1.55; }
+.fig figcaption .cred{ opacity:.85; }
 .close{ margin-top:44px; padding-top:30px; border-top:2px solid var(--ink);
   font-size:20px; font-weight:750; line-height:1.5; color:var(--ink); letter-spacing:-.02em; }
 </style>
@@ -190,6 +202,11 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
     <p class="lead">2026년 7월 4일 토요일 오후, 27℃에 습기까지 낀 날이었습니다. 저는 <strong>논픽션</strong>을
       몇 년째 쓰는 사람입니다 — 핸드워시도 바디워시도 늘 이 브랜드입니다. 그날 성수 연무장길을 걷는데 —
       <strong>매장 밖까지 진하게 퍼진 향이 먼저 저를 붙잡았습니다.</strong> 마침 쓰던 것 말고 <strong>다른 라인도 볼 겸</strong> 들어갔습니다.</p>
+    <figure class="fig">
+      <div class="frame"><img src="이미지/포폴/논픽션_매장.jpg" alt="논픽션 성수 매장" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph" style="display:none"><b>⬜ 사진 자리</b><span>논픽션 성수 연무장길 매장 — <b>밖까지 향이 퍼지는</b> 외관/입구</span></div></div>
+      <figcaption>논픽션 성수 연무장길 매장. <span class="cred">— 출처: [기입]</span></figcaption>
+    </figure>
+
 
     <p>그런데 <strong>향을 파는 곳에서, 향을 하나도 못 맡고 나왔습니다.</strong> 밖에서 저를 완벽하게 유혹한 그 향이 — 안에서는 너무 세서 <strong>아무것도 판별할 수 없게</strong> 만들었습니다. 순서는 이랬습니다.</p>
 
@@ -273,6 +290,11 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
     <h2>가장자리엔 줄이 없었습니다 —<br>대신 <em>세계관</em>이 있었습니다</h2>
     <p>본선이 전부 줄을 세울 때, 가장자리의 <strong>포어플랜</strong>은 정반대였습니다. 건축 설계의 문법으로 만든 디저트 공간인데 —
       줄이 아니라 «세계관»으로 사람을 붙잡고 있었습니다. 본 것 셋.</p>
+    <figure class="fig">
+      <div class="frame"><img src="이미지/포폴/포어플랜_디저트.jpg" alt="포어플랜 디저트" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph" style="display:none"><b>⬜ 사진 자리</b><span>포어플랜 — <b>도면 위에 놓인 디저트</b> · 자재 스와치가 접시에</span></div></div>
+      <figcaption>포어플랜(성수) — 건축 문법을 접시까지 밀어붙인 디저트. <span class="cred">— 출처: [기입]</span></figcaption>
+    </figure>
+
     <div class="obs">
       <div><b>디저트가 도면 위에 놓입니다.</b> 접시가 아니라 도면, 받침엔 치수까지 — 3600 × 1500.</div>
       <div><b>설명 카드가 지질학입니다.</b> 맛이 아니라, <strong>눌려서 굳은 과정</strong>을 적어 뒀습니다.</div>
@@ -328,6 +350,11 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
     <div class="tag">07 · 첫 번째 발견</div>
     <h2>희소한 <em>입장</em>이 —<br>이 동네의 화폐입니다</h2>
     <p>하루 동안 «입장을 거르는» 네 단계를 전부 목격했습니다. 위로 올라갈수록 <strong>우연히 지나가던 방문자가 배제됩니다.</strong></p>
+    <figure class="fig">
+      <div class="frame"><img src="이미지/포폴/성수_대기줄.jpg" alt="성수 매장 앞 대기줄" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph" style="display:none"><b>⬜ 사진 자리</b><span>성수 — <b>매장 앞 대기줄</b> / 웨이팅 · 게이트가 곧 상품</span></div></div>
+      <figcaption>성수 매장 앞 대기 행렬. <span class="cred">— 출처: [기입]</span></figcaption>
+    </figure>
+
     <div class="ladder">
       <div class="step"><div class="sk">① 현장 줄</div><div class="sv">지나가다 합류할 수 있다 — 가장 열려 있다.</div></div>
       <div class="step"><div class="sk">② 웨이팅 앱</div><div class="sv">현장 도착을 전제한다 — 폰이 없으면 못 선다.</div></div>
@@ -346,6 +373,11 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
     <h2>800평인데, 상품은 <em>얼굴만 합니다</em></h2>
     <p>지친 상태로 우연히 들어간 곳이 <strong>젠틀몬스터 성수</strong>였습니다. 800평 매장에 상품은 선글라스 하나 —
       손바닥만 합니다. 남는 공간은 <strong>미술 설치와 DJ 부스</strong>가 채우고 있었습니다.</p>
+    <figure class="fig">
+      <div class="frame"><img src="이미지/포폴/젠틀몬스터_무대.jpg" alt="젠틀몬스터 성수 무대 연출" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph" style="display:none"><b>⬜ 사진 자리</b><span>젠틀몬스터 성수 — <b>800평 무대 연출</b> · 선글라스는 얼굴만</span></div></div>
+      <figcaption>젠틀몬스터 성수 — 무대 9 : 상품 1. <span class="cred">— 출처: [기입]</span></figcaption>
+    </figure>
+
     <p>처음엔 그 스펙터클이 «과한 연출»로 보였습니다. 그런데 되짚으니 반대였습니다 —
       <strong>연출이 아니라, 상품이 작아서 생긴 «필연»</strong>이었습니다. 800평을 선글라스로 채울 수는 없으니까요.</p>
     <p class="pull">무대 <em>9</em> : 상품 <em>1</em>.</p>
@@ -383,6 +415,11 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
     <p>지금까지는 성수의 «한 장면»이었습니다. 스냅샷은 «지금»까지만 말합니다 — 어디로 <strong>가는지</strong>는 못 말합니다.
       방향을 읽으려면 <strong>같은 길을 한 세대 먼저 간 동네</strong>를 봐야 합니다. 성수의 «다 자란» 모습을 가늠하기 좋은 선례가
       도쿄 <strong>다이칸야마</strong>입니다 — 같은 «저층·디자인 주도» 창의지구가 먼저 지나온 길입니다.</p>
+    <figure class="fig">
+      <div class="frame"><img src="이미지/포폴/다이칸야마_츠타야.jpg" alt="다이칸야마 T-SITE 츠타야 서점" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph" style="display:none"><b>⬜ 사진 자리</b><span>다이칸야마 T-SITE · 츠타야 서점 — <b>«숲속 도서관»</b></span></div></div>
+      <figcaption>다이칸야마 T-SITE(2011) — 체험형 리테일의 완성형. <span class="cred">— 출처: [기입]</span></figcaption>
+    </figure>
+
 
     <p class="lead" style="margin-top:26px">① 공간은 이렇게 늙었습니다</p>
     <div class="ladder">
@@ -401,9 +438,17 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
       <div class="r gap"><div class="lab">하는 일</div><div>상품을 «판다»</div><div>맥락을 «큐레이션»한다</div></div>
       <div class="r gap"><div class="lab">필요한 것</div><div>상품 지식</div><div>취향 · 서사 · 공간 감각</div></div>
     </div>
-    <p>츠타야의 «<strong>콘시어지</strong>»가 그 증거입니다 — 여행·요리·예술처럼 <strong>분야마다 전문가가 라이프스타일로 큐레이션</strong>합니다.
-      책을 꽂는 점원이 아닙니다. 리테일 노동이 «거래»에서 <strong>«경험 설계»로 옮겨간</strong> 것입니다.
-      성수의 젠틀몬스터 800평 무대도, 결국 «파는 사람»보다 <strong>«연출하는 사람»</strong>을 더 부릅니다 — 같은 이동이 이미 시작됐습니다.</p>
+    <p><strong>츠타야 서점</strong>(蔦屋書店)부터 봅니다 — 일본의 라이프스타일 서점 체인으로,
+      책을 «분류»가 아니라 <strong>«취향·주제»로 묶어</strong> 파는 곳입니다(요리 책 옆에 조리도구·식기가 같이 놓이는 식). 다이칸야마 T-SITE가 그 대표 매장이고요.
+      그 핵심이 «<strong>콘시어지</strong>»입니다 — 여행·요리·예술처럼 분야마다 <strong>전문가를 두고, 책을 꽂는 게 아니라 «그 취향의 삶»을 큐레이션</strong>합니다.
+      점원이 아니라 «분야 편집자»에 가깝습니다.</p>
+    <p>츠타야 하나로 «노동이 옮겨갔다»고 하기엔 약합니다. 그래서 같은 이동이 보이는 곳을 더 붙입니다.</p>
+    <div class="obs">
+      <div><b>애플 스토어의 «Today at Apple».</b> 직원이 물건을 파는 게 아니라 <b>강좌를 여는 사람</b>이 됐습니다 — 판매대가 교실이 됐죠.</div>
+      <div><b>젠틀몬스터 성수(§8).</b> 매장 직원이 판매원보다 <b>«전시 안내자»</b>에 가깝습니다 — 제가 본 그 무대를 운영하는 자리입니다.</div>
+      <div><b>그 자리를 «만드는» 직무.</b> 공간 기획 · 브랜드 경험(BX) · 팝업 기획 — 십 년 전엔 없던 자리가 채용공고에 생겼습니다. <span style="color:var(--och)">(추론)</span></div>
+    </div>
+    <p>공통점은 하나입니다. 리테일 노동이 <strong>«상품을 파는 일»에서 «경험을 설계하고 안내하는 일»로</strong> 옮겨갑니다.</p>
 
     <div class="spine"><b>이게 «시장이 어디로 가나»를 «찍는» 게 아니라 «근거로» 읽는 법입니다.</b>
       선례(다이칸야마)의 궤적에서 — 성수의 다음, 그리고 <b>거기서 열리고 닫히는 자리</b>를 읽습니다.
@@ -471,8 +516,10 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
     <p>그런데 조준보다 앞에 쓸 데가 있습니다. 성수에서 저는 <strong>정반대의 두 설계</strong>를 봤습니다 —
       희소함을 얻고 접근성을 버린 곳(포어플랜)과, 그 반대로 문을 활짝 연 본선. <strong>어느 쪽에 내가 끌리는지</strong>가,
       곧 «내가 어떤 맞바꿈 속에서 일하고 싶은가»입니다.</p>
-    <p>회사를 읽는 이 눈을 여러 회사에 대보면, 겨눌 과녁을 고르기 전에 <strong>«어디를 향할지»가 먼저 잡힙니다.</strong>
-      그 방향이 진로입니다. 그리고 방향이 있어야 조준할 과녁이 생깁니다 — <strong>진로가 먼저, 취업이 그다음</strong>입니다.</p>
+    <p>다만 방향은 여기서 «혼자» 나오지 않습니다. <strong>§10에서 이 눈으로 «시장이 어디로 가는지»</strong>(자리가 어디로 옮겨가는지)를 읽었죠 —
+      거기에 방금 «내가 어느 쪽에 끌리는가»를 <strong>겹치면</strong>, 그 겹치는 지점이 방향, 곧 진로입니다. <strong>두 화살표가 만나는 자리</strong>입니다.</p>
+    <p>방향이 잡힌 «다음»에야 겨눌 과녁(회사 하나)이 정해집니다 — <strong>진로가 먼저, 취업이 그다음</strong>입니다.
+      회사 읽기 자체가 방향을 주는 게 아닙니다. <b>내 끌림(거울)</b>과 <b>시장의 궤적(§10)</b>이 만나 방향이 서고, 회사 읽기는 그 방향을 «겨누는» 도구입니다.</p>
     <div class="spine">역설계는 «회사를 겨누는 기술»로 끝나지 않습니다. 같은 렌즈를 <b>나 자신과 시장</b>에 돌리면 —
       내가 어떤 결정들 곁에 있고 싶은지, 즉 <b>방향(진로)</b>이 드러납니다. 취업은 그 방향으로 겨눈 한 발입니다.</div>
 
