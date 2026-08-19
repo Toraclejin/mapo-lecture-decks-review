@@ -128,6 +128,12 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
 .transfer .q1{ color:var(--mut); } .transfer .q2{ color:var(--ink); font-weight:750; background:var(--card); }
 
 /* 사진 자리 — 파일 있으면 뜨고, 없으면 점선 자리표시자(깨진 아이콘 방지) · 출처 캡션 */
+.figgrid{ margin:22px 0 6px; display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+.figgrid .frame{ position:relative; border-radius:10px; overflow:hidden; border:1px solid var(--rule); aspect-ratio:4/3; background:var(--card); }
+.figgrid img{ width:100%; height:100%; object-fit:cover; display:block; }
+.figgrid .t{ position:absolute; left:0; bottom:0; right:0; padding:20px 12px 8px; z-index:1;
+  background:linear-gradient(0deg,rgba(20,17,14,.72),transparent); color:#F6F1E9; font-size:12.5px; font-weight:700; }
+.gcap{ font-size:13px; color:var(--faint); margin-top:4px; }
 .fig{ margin:26px 0; }
 .fig .frame{ position:relative; border-radius:12px; overflow:hidden; border:1px solid var(--rule); }
 .fig img{ display:block; width:100%; height:auto; }
@@ -459,6 +465,13 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
     </div>
     <p>정리하면 — 리테일 노동이 <strong>«상품을 파는 일»에서 «경험을 설계하고 안내하는 일»로</strong> 옮겨가는 <strong>«흐름»</strong>이고,
       <strong>다이칸야마는 그게 «다 자란» 곳, 성수는 «막 시작한» 곳</strong>입니다. 그래서 다이칸야마가 성수의 «다음»을 보여줍니다.</p>
+    <div class="figgrid">
+      <figure style="margin:0"><div class="frame"><img src="../이미지/포폴/성수_kith.jpg" alt="KITH 성수"><div class="t">KITH 성수</div></div></figure>
+      <figure style="margin:0"><div class="frame"><img src="../이미지/포폴/성수_oliveyoung.jpg" alt="올리브영 성수"><div class="t">OLIVE YOUNG 성수</div></div></figure>
+      <figure style="margin:0"><div class="frame"><img src="../이미지/포폴/성수_dior.jpg" alt="디올 성수"><div class="t">DIOR 성수</div></div></figure>
+      <figure style="margin:0"><div class="frame"><img src="../이미지/포폴/성수_nudake.jpg" alt="누데이크 성수"><div class="t">nudake · MAYA 성수</div></div></figure>
+    </div>
+    <p class="gcap">성수에 «이미» 들어온 브랜드 경험 매장들 — 파는 자리보다 «연출·큐레이션»하는 자리를 부른다. 사진: 김성진 · 2026.07.04</p>
 
     <div class="spine"><b>이게 «시장이 어디로 가나»를 «찍는» 게 아니라 «근거로» 읽는 법입니다.</b>
       선례(다이칸야마)의 궤적에서 — 성수의 다음, 그리고 <b>거기서 열리고 닫히는 자리</b>를 읽습니다.
