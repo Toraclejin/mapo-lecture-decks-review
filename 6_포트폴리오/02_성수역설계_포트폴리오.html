@@ -14,11 +14,11 @@ html{ -webkit-text-size-adjust:100%; }
 :root{ --paper:#F7F4EF; --card:#ECE7DE; --ink:#1A1613; --ink2:#3A342E; --mut:#726A5F; --soft:#9A9182;
   --acc:#B24A2A; --rule:#E4DED4; }
 body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
-  background:#DED8CD; color:var(--ink); -webkit-font-smoothing:antialiased; letter-spacing:-.008em; line-height:1.78; }
+  background:#DED8CD; color:var(--ink); -webkit-font-smoothing:antialiased; letter-spacing:-.008em; line-height:1.8; }
 .book{ max-width:1140px; margin:0 auto; background:var(--paper); box-shadow:0 2px 40px rgba(20,17,14,.12); }
 .serif{ font-family:'EB Garamond',Georgia,serif; }
 
-/* 사진 판 — 깨끗하게 */
+/* 사진 판 */
 .plate{ position:relative; width:100%; height:clamp(460px,64vh,720px); overflow:hidden; background:var(--card); }
 .plate > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
   filter:contrast(1.03) saturate(.9) brightness(1.0); }
@@ -28,18 +28,40 @@ body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-
   font-size:13px; color:var(--mut); text-align:right; }
 
 /* 내용 블록 */
-.block{ padding:clamp(28px,4vw,50px) clamp(24px,7vw,110px) clamp(52px,7vw,90px); }
+.block{ padding:clamp(30px,4vw,54px) clamp(24px,7vw,110px) clamp(52px,7vw,90px); }
 .no{ font-family:'EB Garamond',serif; font-size:15px; letter-spacing:.1em; color:var(--acc); margin-bottom:18px; }
-.hd{ font-size:clamp(26px,3.8vw,44px); font-weight:300; line-height:1.24; letter-spacing:-.03em; word-break:keep-all; max-width:20ch; color:var(--ink); }
+.hd{ font-size:clamp(26px,3.8vw,44px); font-weight:300; line-height:1.24; letter-spacing:-.03em; word-break:keep-all; max-width:22ch; color:var(--ink); }
 .hd em{ font-style:normal; color:var(--acc); font-weight:400; }
-.p{ margin-top:22px; font-size:clamp(16px,1.35vw,18px); color:var(--ink2); max-width:56ch; line-height:1.9; word-break:keep-all; }
+.p{ margin-top:20px; font-size:clamp(16px,1.3vw,17.5px); color:var(--ink2); max-width:58ch; line-height:1.92; word-break:keep-all; }
 .p b{ color:var(--ink); font-weight:600; }
-.metric{ margin-top:28px; display:flex; gap:14px 30px; flex-wrap:wrap; align-items:baseline;
+.lead{ margin-top:22px; font-size:clamp(17px,1.5vw,19px); color:var(--ink); font-weight:500; max-width:52ch; line-height:1.7; }
+.subhead{ font-size:17px; font-weight:600; color:var(--ink); margin:34px 0 2px; }
+.metric{ margin-top:26px; display:flex; gap:14px 30px; flex-wrap:wrap; align-items:baseline;
   font-family:'EB Garamond',serif; font-size:20px; color:var(--acc); }
 .metric span{ color:var(--mut); font-size:13px; font-family:'Pretendard Variable',sans-serif; letter-spacing:.02em; }
+.pull{ margin:30px 0; font-size:clamp(21px,2.7vw,31px); font-weight:300; line-height:1.42; color:var(--ink); letter-spacing:-.02em; max-width:24ch; }
+.pull em{ font-style:normal; color:var(--acc); }
 .rule{ height:1px; background:var(--rule); margin:0 clamp(24px,7vw,110px); }
 
-/* 표지 (사진 위 제목 — 표지는 예외) */
+/* 표(헤어라인) */
+.rel{ margin:30px 0 8px; max-width:64ch; }
+.rel .h,.rel .r{ display:grid; gap:22px; }
+.rel .h{ padding-bottom:9px; border-bottom:1px solid var(--ink); font-family:'EB Garamond',Pretendard,serif; font-style:italic; font-size:13.5px; color:var(--mut); }
+.rel .r{ border-top:1px solid var(--rule); padding:14px 0; font-size:15.5px; line-height:1.6; }
+.rel .r:first-of-type{ border-top:0; }
+.rel .lab{ font-weight:600; color:var(--ink); }
+.rel .a{ color:var(--mut); } .rel .b{ color:var(--ink2); }
+.rel.two .h,.rel.two .r{ grid-template-columns:1fr 1fr; }
+.rel.three .h,.rel.three .r{ grid-template-columns:1.05fr 1fr 1fr; }
+.rel .r.gap .b{ color:var(--acc); font-weight:600; } .rel .r.gap .a{ color:var(--soft); }
+/* 목록 */
+.list{ margin:24px 0 8px; max-width:60ch; }
+.list .row{ display:grid; grid-template-columns:minmax(96px,1fr) 2.6fr; gap:20px; border-top:1px solid var(--rule); padding:14px 0; align-items:baseline; }
+.list .row:last-child{ border-bottom:1px solid var(--rule); }
+.list .k{ font-weight:600; color:var(--ink); font-size:15.5px; }
+.list .v{ color:var(--ink2); font-size:15px; }
+
+/* 표지 */
 .cover{ background:#1A1613; }
 .cover .scrim{ position:absolute; inset:0; z-index:1;
   background:linear-gradient(180deg,rgba(12,9,7,.5) 0%,transparent 30%,transparent 44%,rgba(12,9,7,.82) 100%); }
@@ -51,13 +73,13 @@ body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-
 .cover .kick{ font-family:'EB Garamond',serif; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:#E39468; margin-bottom:18px; text-shadow:0 1px 10px rgba(0,0,0,.5); }
 .cover h1{ font-size:clamp(44px,8.5vw,84px); font-weight:300; line-height:.98; letter-spacing:-.04em; text-shadow:0 3px 30px rgba(0,0,0,.5); }
 .cover h1 em{ font-style:normal; color:#E39468; }
-.cover .line{ margin-top:20px; font-size:clamp(15px,2vw,19px); color:#D8CEBF; max-width:34ch; word-break:keep-all; text-shadow:0 1px 14px rgba(0,0,0,.6); }
+.cover .line{ margin-top:20px; font-size:clamp(15px,2vw,19px); color:#D8CEBF; max-width:36ch; word-break:keep-all; text-shadow:0 1px 14px rgba(0,0,0,.6); }
 
 /* 막간 문장 */
-.say{ padding:clamp(60px,10vw,130px) clamp(24px,7vw,110px); text-align:center; background:var(--card); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+.say{ padding:clamp(58px,9vw,120px) clamp(24px,7vw,110px); text-align:center; background:var(--card); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
 .say p{ font-size:clamp(24px,3.6vw,40px); font-weight:300; line-height:1.4; letter-spacing:-.02em; max-width:24ch; margin:0 auto; word-break:keep-all; color:var(--ink); }
 .say p em{ font-style:normal; color:var(--acc); }
-.say .s{ margin-top:22px; font-size:16px; color:var(--ink2); max-width:46ch; margin-left:auto; margin-right:auto; }
+.say .s{ margin-top:22px; font-size:16px; color:var(--ink2); max-width:48ch; margin-left:auto; margin-right:auto; }
 
 /* 그리드 */
 .grid{ display:grid; grid-template-columns:1fr 1fr; background:var(--card); }
@@ -68,15 +90,21 @@ body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-
   background:linear-gradient(0deg,rgba(8,6,4,.82),transparent); }
 
 /* 닫는 판 */
-.end{ padding:clamp(72px,11vw,150px) clamp(24px,7vw,110px) clamp(84px,12vw,150px); text-align:center; border-top:2px solid var(--ink); }
-.end .big{ font-size:clamp(28px,4.2vw,50px); font-weight:300; line-height:1.32; letter-spacing:-.03em; max-width:22ch; margin:0 auto; word-break:keep-all; color:var(--ink); }
+.end{ padding:clamp(60px,9vw,120px) clamp(24px,7vw,110px) clamp(84px,12vw,150px); border-top:2px solid var(--ink); }
+.end .no{ text-align:center; }
+.end .big{ font-size:clamp(28px,4vw,48px); font-weight:300; line-height:1.3; letter-spacing:-.03em; max-width:24ch; margin:0 auto; text-align:center; word-break:keep-all; color:var(--ink); }
 .end .big em{ font-style:normal; color:var(--acc); }
-.end .p{ margin:26px auto 0; text-align:center; color:var(--ink2); max-width:46ch; }
+.end .rel{ margin:40px auto 0; }
+.end .p{ max-width:52ch; margin:26px auto 0; text-align:center; color:var(--ink2); }
 .end .more{ margin-top:40px; display:flex; gap:12px 36px; justify-content:center; flex-wrap:wrap; font-size:14px; color:var(--mut); }
 .end .more b{ color:var(--ink); font-weight:600; }
-.end .sig{ margin-top:34px; font-family:'EB Garamond',serif; font-style:italic; font-size:15px; color:var(--soft); }
+.end .sig{ margin-top:34px; text-align:center; font-family:'EB Garamond',serif; font-style:italic; font-size:15px; color:var(--soft); }
 
-@media(max-width:640px){ .grid .cell{ height:clamp(180px,28vh,240px); } .hd{ max-width:none; } }
+@media(max-width:640px){
+  .grid .cell{ height:clamp(180px,28vh,240px); } .hd{ max-width:none; }
+  .rel.two .h,.rel.two .r,.rel.three .h,.rel.three .r,.list .row{ grid-template-columns:1fr; gap:5px; }
+  .rel .h{ display:none; }
+}
 </style>
 </head>
 <body>
@@ -100,61 +128,77 @@ body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-
   <div class="block">
     <div class="no serif">01 — 논픽션 · 조사가 열린 자리</div>
     <h2 class="hd">향을 파는 곳에서, <em>향을 못 맡고</em> 나왔다</h2>
-    <p class="p">몇 년째 쓰는 브랜드였다. 문을 열자 실내 발향이 코를 마비시켰고, 시향지도 핸드워시도 아무것도 판별하지 못한 채 빈손으로 나왔다.
-      그런데 이건 실수가 아니었다 — <b>오래 쓰는 팬이 아니라, 지나가는 사람의 코를 순간에 붙잡게</b> 설계된 매장이었다. 이 짜증 한 줄이 조사를 열었다.</p>
+    <p class="p">몇 년째 쓰는 브랜드였다. 밖까지 진하게 퍼진 향에 끌려 들어갔는데, 실내 발향이 너무 세서 시향지도 핸드워시도 <b>아무것도 판별하지 못했다.</b> 5분 만에 빈손으로 나왔다.</p>
+    <p class="p">화를 내고 끝냈다면 그냥 후기였을 것이다. 대신 <b>날짜 · 장소 · 내용</b>만, 감정어 하나 없이 적고 한 줄의 질문을 남겼다.</p>
+    <p class="pull">“팬이 향을 못 맡게 만들어놓고 — <em>왜 이렇게 만들었을까?</em>”</p>
     <div class="metric">5<span>분 체류</span> · 2<span>회 시도</span> · 0<span>원 구매</span></div>
+    <div class="subhead">본 것과 추측을 갈라 봤다</div>
+    <div class="rel two">
+      <div class="h"><div>본 것</div><div>그래서 추측한 것</div></div>
+      <div class="r"><div class="a">매장 밖까지 향이 진하게 퍼진다</div><div class="b">지나가는 사람을 향으로 먼저 붙잡는다</div></div>
+      <div class="r"><div class="a">입구부터 끝까지 향이 세다</div><div class="b">공간 전체가 하나의 무대다</div></div>
+      <div class="r"><div class="a">스태프가 먼저 시향을 권한다</div><div class="b">응대에 절차가 짜여 있다</div></div>
+      <div class="r"><div class="a">앉을 자리가 없다</div><div class="b">짧게 보고 나갈 손님을 전제한다</div></div>
+    </div>
+    <p class="p">넷을 합치면 하나가 남는다. 이 매장은 머무르게 하는 쪽이 아니라 <b>«끌어당겨 빨리 내보내는» 쪽</b>을 골랐다. 향이 센 것도 실수가 아니라, «오래 쓰는 팬»이 아니라 «처음 지나가는 사람»에 맞춘 설계였다.</p>
   </div>
   <div class="rule"></div>
 
   <!-- 02 14구간 -->
-  <section class="plate"><img src="../이미지/포폴/성수_본선인파.jpg" alt="성수 본선 인파" style="object-position:center 38%"></section>
-  <div class="cap">성수 본선 — 이름 말고 «방향»으로 찾아오는 젊은 층. 사진: 김성진 · 2026.07.04</div>
+  <section class="plate"><img src="../이미지/포폴/성수_중심 거리인파.jpg" alt="성수 중심 거리 인파" style="object-position:center 38%"></section>
+  <div class="cap">성수 중심 거리(연무장길) — 사람이 몰리는 목적지. 이름 대신 «방향»으로 찾아오는 젊은 층. 사진: 김성진 · 2026.07.04</div>
   <div class="block">
     <div class="no serif">02 — 열네 구간 · 한 곳인가, 규칙인가</div>
     <h2 class="hd">거의 모든 매장이 <em>줄</em>을 세우고 있었다</h2>
-    <p class="p">한 매장만의 선택일 수 있어, 가장자리에서 본선까지 열네 구간을 걸었다. 방식만 달랐다 — 현장 줄, 웨이팅 앱, 사전 예약.
-      <b>한 곳이 아니라 «거리 전체»가 같은 문법으로 돌고 있었다.</b> 반복이 확인돼야 «구조»라 부를 수 있다.</p>
+    <p class="p">한 매장만의 선택일 수 있어, <b>외곽에서 중심 거리(연무장길)까지</b> 열네 구간을 걸었다. 방식만 달랐다 — 현장 줄, 웨이팅 앱, 사전 예약. <b>한 곳이 아니라 «거리 전체»가 같은 문법으로 돌고 있었다.</b> 반복이 확인돼야 «구조»라 부를 수 있다.</p>
+    <p class="p">방문객 구성도 눈에 띄었다. 명동이 외국인·전 연령의 관광지라면, 성수는 내국인·젊은 층이 «일부러 찾아오는» 목적지 — <b>명동의 정확한 반전</b>이었다.</p>
     <div class="metric">8 : 2<span>한국인 : 외국인 · 대부분 10–20대</span></div>
   </div>
   <div class="rule"></div>
 
-  <!-- 03 게이트 -->
-  <section class="plate"><img src="../이미지/포폴/성수_pointofview_줄.jpg" alt="POINT OF VIEW 성수 대기줄" style="object-position:center 40%"></section>
-  <div class="cap">POINT OF VIEW 성수 — 큐레이션 스토어 앞 대기줄. 사진: 김성진 · 2026.07.04</div>
-  <div class="block">
-    <div class="no serif">03 — 첫 번째 발견</div>
-    <h2 class="hd">게이트가 곧 <em>상품</em>이다</h2>
-    <p class="p">입장을 거르는 네 단계를 전부 목격했다 — 현장 줄, 웨이팅 앱, 사전 예약, 어드바이저 슬롯. 위로 갈수록 우연히 지나가던 방문자가 배제된다.
-      <b>차별점이 없어서 대기를 시키는 게 아니라, 대기 그 자체를 팔고 있었다.</b> 거부는 적을 만들지만, 대기는 욕망을 만든다.</p>
-  </div>
-  <div class="rule"></div>
-
-  <!-- 04 블루 엘리펀트 -->
-  <section class="plate contain"><img src="../이미지/포폴/블루엘리펀트_무대.jpg" alt="블루 엘리펀트 성수 야경 외관"></section>
-  <div class="cap">블루 엘리펀트 성수 — 밤이면 건물 전체가 무대가 된다. 출처: 블루 엘리펀트 공식 홈페이지</div>
-  <div class="block">
-    <div class="no serif">04 — 두 번째 발견</div>
-    <h2 class="hd">1,000평인데, 상품은 <em>얼굴만</em> 하다</h2>
-    <p class="p">남는 공간은 미술 설치와 미디어가 채웠다. 처음엔 «과한 연출»로 보였지만 되짚으니 반대였다 — <b>연출이 아니라, 상품이 작아서 생긴 필연</b>이다.
-      아이웨어는 부피가 작아 공간이 남고 단가가 높아 그 공간을 미술로 채운다. 극장식 리테일에 구조적으로 가장 잘 맞는 상품이다.</p>
-    <div class="metric">9 : 1<span>무대 : 상품</span></div>
-  </div>
-  <div class="rule"></div>
-
-  <!-- 05 포어플랜 -->
+  <!-- 03 포어플랜 -->
   <section class="plate contain"><img src="../이미지/포폴/포어플랜_디저트.jpg" alt="포어플랜 성수 외관"></section>
   <div class="cap">포어플랜(성수) — 건축 문법을 접시까지 밀어붙인 디저트. 직접 촬영</div>
   <div class="block">
-    <div class="no serif">05 — 정반대로 만든 곳</div>
+    <div class="no serif">03 — 정반대로 만든 곳</div>
     <h2 class="hd">가장자리엔 줄이 없다 — 대신 <em>세계관</em>이 있다</h2>
-    <p class="p">도면 위에 놓인 디저트, 지질학 같은 설명 카드, 접시 위 자재 스와치. 건축의 문법을 메뉴·기물·서빙까지 끝까지 밀어붙였다.
-      <b>큰길 가게는 지나가는 사람이, 가장자리 가게는 «세계관»이 먹여 살린다.</b> 본선이 접근성을 택했다면, 여긴 희소함을 택한 정반대의 맞바꿈이다.</p>
+    <p class="p">중심 거리가 전부 줄을 세울 때, 외곽의 포어플랜은 정반대였다. 도면 위에 놓인 디저트, 지질학 같은 설명 카드, 접시 위 자재 스와치 — <b>건축의 문법을 메뉴 · 기물 · 서빙까지 끝까지 밀어붙였다.</b> 세계관이 새는 자리가 한 군데도 없었다.</p>
+    <p class="p">큰길 가게는 지나가는 사람이, <b>가장자리 가게는 «세계관»이 먹여 살린다.</b> 중심 거리가 «접근성»을 얻고 «희소함»을 버렸다면, 여긴 그 반대 — 같은 거리에서 나온 <b>정반대의 맞바꿈</b>이다.</p>
+  </div>
+  <div class="rule"></div>
+
+  <!-- 04 게이트 -->
+  <section class="plate"><img src="../이미지/포폴/성수_pointofview_줄.jpg" alt="POINT OF VIEW 성수 대기줄" style="object-position:center 40%"></section>
+  <div class="cap">POINT OF VIEW 성수 — 큐레이션 스토어 앞 대기줄. 사진: 김성진 · 2026.07.04</div>
+  <div class="block">
+    <div class="no serif">04 — 첫 번째 발견</div>
+    <h2 class="hd">게이트가 곧 <em>상품</em>이다</h2>
+    <p class="p">입장을 거르는 네 단계를 전부 목격했다. 위로 올라갈수록 우연히 지나가던 방문자가 배제된다.</p>
+    <div class="list">
+      <div class="row"><div class="k">① 현장 줄</div><div class="v">지나가다 합류할 수 있다 — 가장 열려 있다.</div></div>
+      <div class="row"><div class="k">② 웨이팅 앱</div><div class="v">현장 도착을 전제한다 — 폰이 없으면 못 선다.</div></div>
+      <div class="row"><div class="k">③ 사전 예약</div><div class="v">미리 당첨돼 있어야 한다 — 그날 마음으론 못 들어간다.</div></div>
+      <div class="row"><div class="k">④ 어드바이저 슬롯</div><div class="v">사람이 직접 관리하는 줄 — 가장 닫혀 있다.</div></div>
+    </div>
+    <p class="p"><b>차별점이 없어서 대기를 시키는 게 아니라, 대기 그 자체를 팔고 있었다.</b> 거부는 적을 만들지만, 대기는 욕망을 만든다. 그리고 전부가 줄을 세우면, 그건 인기가 아니라 «연출»이다.</p>
+  </div>
+  <div class="rule"></div>
+
+  <!-- 05 블루 엘리펀트 -->
+  <section class="plate contain"><img src="../이미지/포폴/블루엘리펀트_무대.jpg" alt="블루 엘리펀트 성수 야경 외관"></section>
+  <div class="cap">블루 엘리펀트 성수 — 밤이면 건물 전체가 무대가 된다. 출처: 블루 엘리펀트 공식 홈페이지</div>
+  <div class="block">
+    <div class="no serif">05 — 두 번째 발견</div>
+    <h2 class="hd">1,000평인데, 상품은 <em>얼굴만</em> 하다</h2>
+    <p class="p">남는 공간은 미술 설치와 미디어가 채웠다. 처음엔 «과한 연출»로 보였지만 되짚으니 반대였다 — <b>연출이 아니라, 상품이 작아서 생긴 필연</b>이다. 아이웨어는 부피가 작아 공간이 남고, 단가가 높아 그 공간을 미술로 채운다. 극장식 리테일에 구조적으로 가장 잘 맞는 상품이다.</p>
+    <p class="pull">무대 <em>9</em> : 상품 <em>1</em>.</p>
+    <p class="p">“대단하다”가 아니라 <b>“왜 이렇게 될 수밖에 없었나”</b>로 되짚은 대목이다. 감탄은 관광기, 필연의 추적은 분석이다.</p>
   </div>
 
   <!-- 막간: 명제 -->
   <section class="say">
     <p>사람들은 여기에 —<br><em>객체가 되러</em> 온다.</p>
-    <div class="s">매일 스스로 선택하고 책임지느라 지친 세대에게, 줄 세워지는 것이 오히려 «휴식»이자 «사치»가 됐다. 이게 성수가 파는 진짜 상품이다.</div>
+    <div class="s">게이트 · 무대 · 계산대 — 전부 «입장을 거르고, 기다리게 하고, 선택을 대신 정해주는» 쪽으로 정렬돼 있었다. 매일 스스로 선택하고 책임지느라 지친 세대에게, 줄 세워지는 것이 오히려 «휴식»이자 «사치»가 됐다. 이게 성수가 파는 진짜 상품이다.</div>
   </section>
 
   <!-- 06 지붕 벗긴 백화점 -->
@@ -163,8 +207,16 @@ body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-
   <div class="block">
     <div class="no serif">06 — 큰 틀</div>
     <h2 class="hd">지붕을 벗긴 <em>백화점</em>이었다</h2>
-    <p class="p">고객 거르기·안내·유인·통제 — 백화점의 장치가 형태만 바꿔 길바닥에 그대로 눕는다. 단 <b>«쉼» 한 칸만 비었다.</b>
-      필지마다 주인이 달라 손님이 머물러도 «내 평수» 매출이 아니니, 휴식이 건물 밖으로 밀렸다. <b>성수는 휴식을 수출하고, 피로를 수입한다.</b></p>
+    <p class="p">열네 구간을 다 걷고 나니 기시감이 왔다. 성수는 힙한 신생 동네처럼 보이지만, 구조는 낯익었다 — <b>백화점을 눕혀서 길바닥에 펼쳐 놓은 것</b>이었다. 지붕을 벗기면, 백화점의 장치가 그대로 눕는다. 단 한 칸만 빼고.</p>
+    <div class="rel three">
+      <div class="h"><div>백화점 장치</div><div>백화점 (수직)</div><div>성수 (수평)</div></div>
+      <div class="r"><div class="lab">고객 거르기</div><div class="a">층별 필터링</div><div class="b">매장별 필터링</div></div>
+      <div class="r"><div class="lab">안내</div><div class="a">안내데스크</div><div class="b">웨이팅 앱</div></div>
+      <div class="r"><div class="lab">유인</div><div class="a">1층 시향 코너</div><div class="b">거리까지 새어 나온 향</div></div>
+      <div class="r"><div class="lab">접근 통제</div><div class="a">발레파킹</div><div class="b">차 없는 거리</div></div>
+      <div class="r gap"><div class="lab">쉼</div><div class="a">라운지 · 정원</div><div class="b">없음 — 한 칸만 끊긴다</div></div>
+    </div>
+    <p class="p">넷은 형태만 바꿔 그대로 눕는데 <b>«쉼» 한 칸만 비었다.</b> 필지마다 주인이 달라 손님이 머물러도 «내 평수» 매출이 아니니, 휴식이 건물 밖으로 밀렸다. <b>성수는 휴식을 수출하고, 피로를 수입한다</b> — 내가 27℃ 고습에서 쌓은 피로는 컨디션이 아니라 구조의 산출물이었다.</p>
   </div>
   <div class="rule"></div>
 
@@ -178,8 +230,7 @@ body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-
   <div class="block">
     <div class="no serif">07 — 이미 옮겨가는 자리</div>
     <h2 class="hd">파는 자리보다 — <em>연출하는</em> 자리를 부른다</h2>
-    <p class="p">성수에 이미 들어온 브랜드 경험 매장들. 직원은 판매원보다 «전시 안내자»에 가깝고, 애플의 «Today at Apple»은 판매대를 교실로 바꿨다.
-      <b>리테일 노동이 «상품을 파는 일»에서 «경험을 설계하고 안내하는 일»로 옮겨가는 흐름</b> — 공간 기획·브랜드 경험(BX)·팝업 기획 같은 자리가 새로 생긴다.</p>
+    <p class="p">성수에 이미 들어온 브랜드 경험 매장들. 직원은 판매원보다 «전시 안내자»에 가깝고, 애플의 «Today at Apple»은 판매대를 교실로 바꿨다. <b>리테일 노동이 «상품을 파는 일»에서 «경험을 설계하고 안내하는 일»로 옮겨가는 흐름</b>이다 — 공간 기획 · 브랜드 경험(BX) · 팝업 기획 같은, 십 년 전엔 없던 자리가 공고에 생긴다.</p>
   </div>
   <div class="rule"></div>
 
@@ -189,18 +240,26 @@ body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-
   <div class="block">
     <div class="no serif">08 — 성수의 «다음»</div>
     <h2 class="hd">먼저 간 동네가, 성수의 <em>다음</em>을 보여준다</h2>
-    <p class="p">스냅샷은 «지금»까지만 말한다. 방향을 읽으려면 같은 길을 한 세대 먼저 간 동네를 봐야 한다 — 도쿄 <b>다이칸야마</b>, 같은 «저층·디자인 주도» 창의지구다.
-      츠타야 T-SITE는 책이 아니라 «머무는 경험»을 판다. <b>성수의 체험형 매장이 향하는 완성형</b>이자, 거기서 열리고 닫히는 자리를 미리 보여준다.</p>
-    <p class="p" style="color:var(--soft);font-size:14px;margin-top:14px">※ «다음»과 «직무 이동»은 관찰이 아니라 선례로 읽은 추론이다.</p>
+    <p class="p">스냅샷은 «지금»까지만 말한다. 방향을 읽으려면 같은 길을 한 세대 먼저 간 동네를 봐야 한다 — 도쿄 <b>다이칸야마</b>, 같은 «저층 · 디자인 주도» 창의지구다. 랜드마크 힐사이드 테라스는 30년에 걸쳐 지어졌고(성수가 «빨리 뜬» 것과 정반대), 츠타야 T-SITE는 책이 아니라 <b>«머무는 경험»을 판다.</b></p>
+    <p class="p"><b>성수의 체험형 매장이 향하는 완성형</b>이자, 거기서 열리고 닫히는 자리를 미리 보여준다. 임대료가 오르고 날것이 빠지고 큐레이션이 촘촘해지는 게 성수의 «다음»으로 유력하다.</p>
+    <p class="p" style="color:var(--soft);font-size:14px;margin-top:14px">※ «다음»과 «직무 이동»은 관찰이 아니라 선례로 읽은 추론이다 — 확인한 것과 추측한 것을 섞지 않는다.</p>
   </div>
 
-  <!-- 닫는 판 -->
+  <!-- 닫는 판 : 전이 -->
   <section class="end">
-    <p class="big">완성된 거리를,<br><em>거꾸로</em> 읽었다.</p>
-    <p class="p">이 문서가 증명한 건 성수가 아니라 «눈»이다. 같은 눈은 처음 보는 어떤 <b>회사</b>에도, 무엇보다 <b>내가 어디로 향할지(진로)</b>에도 그대로 댄다.</p>
+    <div class="no serif">09 — 이 눈을 어디에 또 대나</div>
+    <p class="big">이 눈은 <em>회사</em>에도,<br>무엇보다 <em>내 방향(진로)</em>에도 댄다</p>
+    <p class="p">이 문서가 증명한 건 성수가 아니라 «눈»이다. 성수에 던진 질문은, 문장 하나 바꾸지 않고 회사에 그대로 들어간다.</p>
+    <div class="rel two" style="max-width:52ch">
+      <div class="h"><div>성수에 물은 것</div><div>회사에 물을 것</div></div>
+      <div class="r"><div class="a">어디에 돈과 공간을 썼나</div><div class="b">어디에 사람을 뽑는가</div></div>
+      <div class="r"><div class="a">무엇을 얻으려고 무엇을 버렸나</div><div class="b">어느 자리를 새로 만들었나</div></div>
+      <div class="r"><div class="a">누가 운영하나</div><div class="b">누가 결정하나</div></div>
+    </div>
+    <p class="p"><b>매장의 평수가 그 매장의 우선순위를 말하듯 — 채용공고가 그 회사의 우선순위를 말한다.</b> 다만 회사 읽기 자체가 방향을 주진 않는다. «내가 어느 쪽에 끌리는가»(포어플랜 vs 중심 거리)와 «시장이 어디로 가는가»(§8)가 만나 방향이 서고, 회사 읽기는 그 방향을 «겨누는» 도구다. <b>진로가 먼저, 취업이 그다음이다.</b></p>
     <div class="more">
-      <span>근거·추론 전체 → <b>제작 노트</b></span>
-      <span>만드는 법·과정 → <b>참고 자료</b></span>
+      <span>근거 · 표 전문 → <b>제작 노트</b></span>
+      <span>만드는 법 · 과정 → <b>참고 자료 (AI용)</b></span>
     </div>
     <div class="sig serif">Seongsu, Seoul — 2026.07.04 · 김성진</div>
   </section>
