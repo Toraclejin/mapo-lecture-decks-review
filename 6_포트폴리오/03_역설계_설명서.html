@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>역설계 설명서 — 만드는 법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+@font-face{ font-family:'Pretendard Variable'; font-weight:45 920; font-style:normal;
+  font-display:swap; src:url('../_assets/PretendardVariable.woff2') format('woff2-variations'); }
+:root{
+  --paper:#FCFBF9; --card:#F2EFEA; --ink:#191512; --ink2:#312C27;
+  --mut:#726A5F; --faint:#938A7E; --rule:#E7E2DA;
+  --och:#B24A2A; --ochbg:#EFE9E1; --red:#8E2B18; --grn:#2C6047;
+}
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+  background:#DCD6CC; color:var(--ink); margin:0; padding:0;
+  font-feature-settings:"ss01"; line-height:1.72; letter-spacing:-.006em; }
+.doc{ max-width:820px; margin:0 auto; background:var(--paper);
+  padding:0 clamp(20px,6vw,88px) 168px; box-shadow:0 2px 40px rgba(20,17,14,.10); }
+
+/* ── 표지 / 목적선 ────────────────────────────── */
+.cover{ padding:0 0 44px; border-bottom:2px solid var(--ink); }
+.kicker{ font-size:13.5px; font-weight:800; letter-spacing:.16em; color:var(--och);
+  text-transform:uppercase; margin-bottom:22px; }
+.cover h1{ font-size:clamp(38px,8vw,66px); line-height:1.08; font-weight:860;
+  letter-spacing:-.03em; margin:0 0 8px; }
+.cover h1 em{ font-style:normal; color:var(--och); }
+.cover .lede{ font-size:clamp(18px,2.6vw,22px); color:var(--ink2); font-weight:600;
+  margin:20px 0 0; max-width:32ch; }
+.purpose{ margin:34px 0 0; padding:22px 26px; background:var(--card);
+  border-left:4px solid var(--och); border-radius:4px; }
+.purpose b{ color:var(--och); }
+.purpose .big{ font-size:19.5px; font-weight:800; color:var(--ink); line-height:1.5; }
+.meta{ display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:30px;
+  font-size:13.5px; color:var(--faint); font-weight:600; }
+.meta b{ color:var(--ink2); }
+
+/* ── 표지 사진 히어로 (무신사 성수 실사) ── */
+.hero{ position:relative; margin:0 calc(-1 * clamp(20px,6vw,88px)) 40px; aspect-ratio:16/10;
+  overflow:hidden; background:#26221E; }
+.hero img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:52% 40%;
+  filter:contrast(1.08) saturate(.88) brightness(.98); }
+.hero .grade{ position:absolute; inset:0; z-index:1; mix-blend-mode:soft-light;
+  background:linear-gradient(180deg,#4a6a86 0%,transparent 46%,#7a4a30 100%); opacity:.4; }
+.hero .scrim{ position:absolute; inset:0; z-index:2;
+  background:linear-gradient(180deg,rgba(16,14,12,.42) 0%,rgba(16,14,12,0) 26%,rgba(16,14,12,.05) 50%,rgba(16,14,12,.6) 82%,rgba(16,14,12,.9) 100%); }
+.hero .frost{ position:absolute; left:0; right:0; bottom:0; height:46%; z-index:2;
+  backdrop-filter:blur(6px) saturate(1.04); -webkit-backdrop-filter:blur(6px) saturate(1.04);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 42%); mask-image:linear-gradient(180deg,transparent 0%,#000 42%);
+  background:linear-gradient(180deg,transparent 0%,rgba(14,12,10,.5) 100%); }
+.hero .in{ position:absolute; inset:0; z-index:3; padding:clamp(22px,4vw,46px);
+  display:flex; flex-direction:column; justify-content:space-between; color:#F6F1E9; }
+.hero .mast{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+.hero .mast .m{ font-weight:820; font-size:clamp(13px,1.9vw,17px); letter-spacing:.02em;
+  text-shadow:0 1px 12px rgba(0,0,0,.5); }
+.hero .mast .i{ font-size:12px; letter-spacing:.06em; color:#E7DECF; font-weight:500;
+  text-shadow:0 1px 8px rgba(0,0,0,.6); }
+.hero .hkick{ font-size:12.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:#E9A987; margin-bottom:12px; text-shadow:0 1px 10px rgba(0,0,0,.5); }
+.hero h1.htitle{ font-size:clamp(38px,8vw,68px); line-height:1.0; font-weight:800; letter-spacing:-.035em;
+  margin:0; color:#F8F3EB; text-shadow:0 3px 30px rgba(0,0,0,.5); }
+.hero h1.htitle em{ font-style:normal; color:#E9A987; }
+.hero .hsub{ margin-top:14px; font-size:clamp(13px,1.9vw,17px); font-weight:600; color:#EDE6DA;
+  max-width:40ch; word-break:keep-all; text-shadow:0 1px 12px rgba(0,0,0,.6); }
+
+/* ── 섹션 ────────────────────────────────────── */
+section{ padding:clamp(58px,8.5vw,94px) 0 0; }
+.serif{ font-family:'EB Garamond',Georgia,serif; }
+.tag{ font-family:'EB Garamond',Pretendard,sans-serif; font-size:15px; font-weight:500; font-style:italic;
+  letter-spacing:.02em; color:var(--och); margin-bottom:16px; }
+h2{ font-size:clamp(26px,4.6vw,35px); line-height:1.24; font-weight:740;
+  letter-spacing:-.018em; margin:0 0 22px; }
+h2 em{ font-style:normal; color:var(--och); }
+p{ font-size:17.5px; margin:0 0 20px; color:var(--ink2); }
+p strong, li strong{ color:var(--ink); font-weight:750; }
+.lead{ font-size:19.5px; color:var(--ink); font-weight:600; }
+
+/* 방법 카드 */
+.method{ margin:26px 0 8px; border:1px solid var(--rule); border-radius:12px; overflow:hidden; }
+.method .row{ display:grid; grid-template-columns:132px 1fr; gap:0;
+  border-top:1px solid var(--rule); }
+.method .row:first-child{ border-top:0; }
+.method .k{ background:var(--card); padding:16px 18px; font-weight:800; font-size:15.5px;
+  color:var(--ink); border-right:1px solid var(--rule); }
+.method .k small{ display:block; font-weight:600; color:var(--faint); font-size:12.5px;
+  margin-top:3px; letter-spacing:0; }
+.method .v{ padding:16px 20px; font-size:16px; color:var(--ink2); }
+
+/* 관찰 → 추론 (본 것 / 추측) */
+.infer{ margin:24px 0; border-radius:12px; overflow:hidden; border:1px solid var(--rule); }
+.infer .r{ display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--rule); }
+.infer .r:first-child{ border-top:0; }
+.infer .c{ padding:15px 18px; font-size:15.5px; }
+.infer .saw{ background:#fff; color:var(--ink); font-weight:650;
+  border-right:1px solid var(--rule); }
+.infer .guess{ background:var(--ochbg); color:var(--red); }
+.infer .hd{ font-weight:800; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; }
+.infer .hd.saw{ color:var(--ink2); } .infer .hd.guess{ color:var(--och); }
+
+.pull{ margin:28px 0; padding:2px 0 2px 24px; border-left:4px solid var(--ink);
+  font-size:21px; font-weight:750; line-height:1.4; color:var(--ink); letter-spacing:-.02em; }
+.spine{ margin:22px 0; padding:16px 20px; border:1px dashed var(--och);
+  border-radius:10px; background:#fff; font-size:15.5px; color:var(--ink2); }
+.spine b{ color:var(--och); }
+
+.diary{ margin:22px 0; border-left:2px solid var(--rule); padding-left:22px; }
+.diary .d{ display:grid; grid-template-columns:64px 1fr; gap:14px; margin:9px 0;
+  font-size:15.5px; }
+.diary .t{ font-weight:800; color:var(--och); font-variant-numeric:tabular-nums; }
+.diary .s{ color:var(--ink2); }
+.stats{ display:flex; gap:34px; margin:22px 0 4px; flex-wrap:wrap; }
+.stats .st .v{ font-size:34px; font-weight:850; letter-spacing:-.03em; }
+.stats .st .v i{ font-style:normal; font-size:17px; color:var(--faint); margin-left:2px; }
+.stats .st .l{ font-size:13px; color:var(--faint); font-weight:600; }
+.stats .st.zero .v{ color:var(--och); }
+.note{ font-size:14.5px; color:var(--faint); margin-top:6px; }
+.draft{ margin:0 0 2px; font-size:12px; font-weight:800; letter-spacing:.1em;
+  color:var(--red); text-transform:uppercase; }
+
+/* 관찰 3항목 */
+.obs{ margin:20px 0; display:grid; gap:11px; }
+.obs div{ padding:14px 18px; background:#fff; border:1px solid var(--rule);
+  border-radius:10px; font-size:15.5px; color:var(--ink2); }
+.obs b{ color:var(--och); font-weight:750; }
+/* 비교표 */
+.cmp{ margin:24px 0; border:1px solid var(--rule); border-radius:12px; overflow:hidden; }
+.cmp .h,.cmp .r{ display:grid; grid-template-columns:1.05fr 1fr 1fr; }
+.cmp .h{ background:var(--ink); color:#fff; font-weight:800; font-size:13px; }
+.cmp .h>div{ padding:12px 15px; }
+.cmp .r{ border-top:1px solid var(--rule); font-size:14.5px; }
+.cmp .r>div{ padding:12px 15px; }
+.cmp .r .lab{ font-weight:750; color:var(--ink); background:var(--card); }
+.cmp .r.gap>div:last-child{ color:var(--och); font-weight:800; background:var(--ochbg); }
+.cmp .r.gap>div:nth-child(2){ color:var(--faint); }
+/* 구간 리스트 */
+.zones{ display:grid; grid-template-columns:repeat(2,1fr); gap:7px 24px; margin:20px 0;
+  font-size:14.5px; }
+.zones div{ display:flex; gap:9px; color:var(--ink2); }
+.zones .zn{ font-weight:800; color:var(--och); font-variant-numeric:tabular-nums; min-width:20px; }
+/* 사다리 */
+.ladder{ margin:22px 0; }
+.ladder .step{ display:grid; grid-template-columns:190px 1fr; gap:16px; align-items:baseline;
+  padding:13px 0; border-top:1px solid var(--rule); }
+.ladder .step:first-child{ border-top:0; }
+.ladder .sk{ font-weight:800; color:var(--ink); font-size:15.5px; }
+.ladder .sv{ font-size:14.5px; color:var(--mut); }
+/* 이론 */
+.theory{ margin:22px 0; display:grid; gap:11px; }
+.theory div{ font-size:14.5px; color:var(--ink2); padding-left:16px; border-left:3px solid var(--rule); }
+.theory b{ color:var(--ink); } .theory i{ font-style:normal; color:var(--och); font-weight:750; }
+/* 전이표 */
+.transfer{ margin:24px 0; border-top:2px solid var(--ink); }
+.transfer .r{ display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--rule); }
+.transfer .r>div{ padding:14px 18px; font-size:15.5px; }
+.transfer .q1{ color:var(--mut); } .transfer .q2{ color:var(--ink); font-weight:750; background:var(--card); }
+
+/* 사진 자리 — 파일 있으면 뜨고, 없으면 점선 자리표시자(깨진 아이콘 방지) · 출처 캡션 */
+.figgrid{ margin:22px 0 6px; display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+.figgrid .frame{ position:relative; border-radius:10px; overflow:hidden; border:1px solid var(--rule); aspect-ratio:4/3; background:var(--card); }
+.figgrid img{ width:100%; height:100%; object-fit:cover; display:block; filter:contrast(1.03) saturate(.88) brightness(1.0); }
+.figgrid .t{ position:absolute; left:0; bottom:0; right:0; padding:20px 12px 8px; z-index:1;
+  background:linear-gradient(0deg,rgba(20,17,14,.72),transparent); color:#F6F1E9; font-size:12.5px; font-weight:700; }
+.gcap{ font-size:13px; color:var(--faint); margin-top:6px; } .gcap { font-style:normal; }
+.fig{ margin:26px 0; }
+.fig .frame{ position:relative; border-radius:12px; overflow:hidden; border:1px solid var(--rule); }
+.fig img{ display:block; width:100%; height:auto; filter:contrast(1.03) saturate(.88) brightness(1.0); }
+.fig .ph{ aspect-ratio:16/10; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px;
+  text-align:center; padding:22px; color:var(--faint);
+  background:repeating-linear-gradient(45deg,#FBFAF8,#FBFAF8 13px,#F1EDE6 13px,#F1EDE6 26px); }
+.fig .ph b{ color:var(--red); font-size:12.5px; font-weight:800; letter-spacing:.08em; }
+.fig .ph span{ font-size:14.5px; max-width:34ch; line-height:1.5; }
+.fig figcaption{ margin-top:11px; font-size:13px; color:var(--faint); line-height:1.55; }
+.fig figcaption .cred{ font-family:'EB Garamond',serif; font-style:italic; font-size:14px; opacity:.9; }
+.close{ margin-top:44px; padding-top:30px; border-top:2px solid var(--ink);
+  font-size:20px; font-weight:750; line-height:1.5; color:var(--ink); letter-spacing:-.02em; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="cover">
+    <div class="kicker">How-To · Reverse-Engineering</div>
+    <h1>역설계 <em>설명서</em></h1>
+    <p class="lede">완성된 것을 거꾸로 읽는 법 — 그리고 이 포폴이 <b>나온 과정</b>.</p>
+
+    <div class="purpose">
+      <p class="big" style="margin:0">이 문서는 <u>방법</u>입니다.</p>
+      <p style="margin:10px 0 0">함께 드린 <b>«성수 역설계» 포폴</b>이 이 방법의 <b>완성 예시</b>입니다.
+        여기서는 그걸 <b>어떻게 만드는지</b>, 그리고 <b>어떻게 나왔는지</b>를 폅니다.
+        읽고 나면 <b>당신 것 하나</b>를 시작할 수 있게 — 그게 목표입니다.</p>
+    </div>
+
+    <div class="meta">
+      <span><b>짝</b> 성수 역설계 포폴(작업물)과 함께</span>
+      <span><b>쓰임</b> 취업 조준 · 진로 방향 잡기</span>
+      <span><b>필요한 것</b> 짜증 한 줄 · 질문 하나 · AI</span>
+    </div>
+  </div>
+
+  <!-- §1 역설계란 -->
+  <section>
+    <div class="tag">01 · 한 문장으로</div>
+    <h2>역설계 —<br><em>완성된 것</em>에서 <em>결정</em>을 거꾸로 꺼내는 일</h2>
+    <p class="lead">매장도, 앱도, 회사도, 남의 커리어도 — 우리에겐 <strong>다 지어진 채로</strong> 도착합니다.
+      그 완성된 표면만 보면 «대단하다»에서 끝나요.</p>
+    <p>역설계는 거기서 <strong>«누가, 무엇을 얻으려고, 무엇을 버렸나»</strong>를 되짚습니다.
+      결과를 원인으로 되돌리는 거죠. 이 눈이 한번 서면 — 남이 만든 무엇이든 <strong>«읽을 수 있는 대상»</strong>이 됩니다.
+      취업에선 지원할 회사를, 진로에선 내 방향을 그렇게 읽습니다.</p>
+    <div class="spine">겁먹지 마세요. 이건 재능이 아니라 <b>순서</b>입니다. 순서만 알면 누구나 합니다 — 아래 다섯 걸음.</div>
+  </section>
+
+  <!-- §2 방법 다섯 걸음 -->
+  <section>
+    <div class="tag">02 · 방법</div>
+    <h2>다섯 걸음이면 됩니다</h2>
+    <div class="method">
+      <div class="row"><div class="k">① 고른다<small>완성물 하나</small></div><div class="v">이미 «다 된» 것 하나. 매장·앱·브랜드·동네·사람. <b>작을수록 좋습니다</b> — 매장 «한 곳», 화면 «한 장».</div></div>
+      <div class="row"><div class="k">② 본다<small>본 것만</small></div><div class="v">눈에 «실제로» 보인 것만 적습니다, 해석 없이. <b>«넓다 · 줄이 길다 · 조명이 어둡다»</b>처럼. 여기서 추측을 섞으면 뒤가 다 무너집니다.</div></div>
+      <div class="row"><div class="k">③ 가른다<small>본 것 ↔ 추측</small></div><div class="v">적은 것 옆에 «이건 왜?»를 답니다. 그 답이 <b>추측</b>이에요. 본 것과 추측을 <b>다른 칸</b>에 둡니다 — 섞이면 그게 관광기입니다.</div></div>
+      <div class="row"><div class="k">④ 복원한다<small>결정으로</small></div><div class="v">추측을 <b>«결정»으로 바꿉니다.</b> "줄을 세운다 = 접근성을 버리고 희소함을 산 «결정»." 표면 뒤의 맞바꿈이 드러납니다.</div></div>
+      <div class="row"><div class="k">⑤ 세우고 깬다<small>명제 + 반증</small></div><div class="v">복원한 결정들을 <b>한 문장(명제)</b>으로 묶고 — 곧바로 <b>«틀렸다면?»</b>을 답니다. 반증까지 붙어야 «주장»이 됩니다.</div></div>
+    </div>
+    <p class="note">성수 포폴의 §0~§11이 정확히 이 다섯 걸음을 밟은 기록입니다. 걸음이 헷갈리면 그 문서를 열어 대조하세요.</p>
+  </section>
+
+  <!-- §3 어디에 대나 -->
+  <section>
+    <div class="tag">03 · 어디에 대나</div>
+    <h2>이 눈으로 <em>당신이</em> 만들 것 —<br>다섯 갈래</h2>
+    <p>같은 다섯 걸음을, 대상만 바꿔 댑니다. <strong>다섯 중 하나, 대상 하나</strong>면 시작입니다.</p>
+    <div class="ladder">
+      <div class="step"><div><strong>공간 역설계</strong></div><div>자주 가는 매장·카페 하나. 동선·조명·입구를 왜 이렇게 짰나. <b style="color:var(--och)">→ 관찰에서 «결정»을 되짚는 눈</b> <span class="note" style="display:inline">— 성수 포폴이 이겁니다</span></div></div>
+      <div class="step"><div><strong>제품 역설계</strong></div><div>매일 쓰는 앱·서비스. 이 버튼이 왜 여기, 가입이 왜 이 순서인가. <b style="color:var(--och)">→ 만든 사람의 «제약»을 읽는 눈</b></div></div>
+      <div class="step"><div><strong>브랜드 역설계</strong></div><div>좋아하는 브랜드의 피드·캠페인. 왜 이 톤, 왜 이 주기인가. <b style="color:var(--och)">→ 겉모습 뒤의 «전략»을 읽는 눈</b></div></div>
+      <div class="step"><div><strong>시장 역설계</strong></div><div>한 동네·한 카테고리. 왜 이 형식이 여기 몰리나. <b style="color:var(--och)">→ 시장의 «다음»을 읽는 눈</b></div></div>
+      <div class="step"><div><strong>진로 역설계</strong></div><div>대상이 <strong>«당신 자신»</strong>입니다 — 바로 아래에서 폅니다. <b style="color:var(--och)">→ 내 방향을 읽는 눈</b></div></div>
+    </div>
+
+    <p class="lead" style="margin-top:32px">진로에서는 무엇을 내놓나 — <strong>두 방향의 겹침</strong></p>
+    <div class="purpose" style="border-left-color:var(--och)">
+      <p style="margin:0 0 12px"><b>① 나를 거꾸로 읽기.</b> 그동안 남긴 메모·발자취를 «완성물»처럼 펼쳐놓고 되짚습니다. 반복해서 끌린 구간이 드러나요 — 그게 <strong>«내 축»</strong>입니다.</p>
+      <p style="margin:0 0 12px"><b>② 롤모델을 거꾸로 읽기.</b> 되고 싶은 사람의 커리어를 «완성형»으로 놓고, 그가 지나온 칸을 복원합니다 — 그게 <strong>«경로»</strong>입니다.</p>
+      <p class="big" style="margin:0">두 개가 겹치는 칸 = 진로의 <b>«다음 한 칸»</b>. <b>내 끌림 × 시장 방향</b>이 만나는 바로 그 자리입니다.</p>
+    </div>
+  </section>
+
+  <!-- §4 making-of -->
+  <section>
+    <div class="tag">04 · 뒷이야기</div>
+    <h2>이 문서는 <em>앉아서 쓴 글</em>이 아닙니다 —<br>이렇게 나왔습니다</h2>
+    <p class="lead">재능이 아니라 «순서»였다는 걸 보여드리려고, 만든 과정을 그대로 폅니다.</p>
+    <div class="ladder">
+      <div class="step"><div><strong>1 · 짜증 한 줄</strong></div><div>성수에서 <b>향을 못 맡고 나온 5분.</b> 그 «불편»을 딱 한 줄로 적었습니다. 대단한 관찰이 아니라 <b>짜증</b>이었어요.</div></div>
+      <div class="step"><div><strong>2 · 질문으로</strong></div><div>그 짜증을 뒤집어 <b>질문</b>으로 바꿨습니다 — "왜 향을 «못 맡게» 설계했지?" 불평이 질문이 되는 순간, 역설계가 시작됩니다.</div></div>
+      <div class="step"><div><strong>3 · 걸으며 메모</strong></div><div>질문을 들고 동네를 걸었습니다. 본 것만 짧게, 옆엔 «왜?»만. 정돈하지 않았어요 — <b>줄로만 쌓았습니다.</b></div></div>
+      <div class="step"><div><strong>4 · AI로 구조화</strong></div><div>그 메모 뭉치를 <b>AI에게 넘겨</b> 구조를 잡았습니다. AI는 정리를 대신한 게 아니라 — <b>본 것과 추측을 가르라</b>고, <b>여긴 근거가 비었다</b>고 되물었어요. 제가 못 본 구멍을 찔러준 겁니다.</div></div>
+      <div class="step"><div><strong>5 · 문서로</strong></div><div>그 되물음에 답하며 명제와 반증을 세웠고 — 그게 이 포폴이 됐습니다. 이 <b>«설명서»도 똑같은 순서</b>로 나왔고요.</div></div>
+    </div>
+    <div class="spine">핵심은 하나 — <b>«짜증 한 줄 + 질문 + AI»</b>였습니다. 완성된 문장을 처음부터 쓴 게 아니라, <b>줄을 쌓고 순서를 바꿨을 뿐</b>이에요. 그러니 여러분도 됩니다.</div>
+    <div class="close">시작은 «잘 쓰기»가 아니라 <em>«짜증 한 줄»</em>입니다.<br>그거 하나 적는 것 — 오늘 할 수 있습니다.</div>
+  </section>
+
+</div>
+</body>
+</html>

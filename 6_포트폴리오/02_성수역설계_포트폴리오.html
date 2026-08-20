@@ -23,7 +23,7 @@ body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-
   padding:0 clamp(20px,6vw,88px) 168px; box-shadow:0 2px 40px rgba(20,17,14,.10); }
 
 /* ── 표지 / 목적선 ────────────────────────────── */
-.cover{ padding:clamp(56px,10vw,104px) 0 44px; border-bottom:2px solid var(--ink); }
+.cover{ padding:0 0 44px; border-bottom:2px solid var(--ink); }
 .kicker{ font-size:13.5px; font-weight:800; letter-spacing:.16em; color:var(--och);
   text-transform:uppercase; margin-bottom:22px; }
 .cover h1{ font-size:clamp(38px,8vw,66px); line-height:1.08; font-weight:860;
@@ -38,6 +38,34 @@ body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-
 .meta{ display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:30px;
   font-size:13.5px; color:var(--faint); font-weight:600; }
 .meta b{ color:var(--ink2); }
+
+/* ── 표지 사진 히어로 (무신사 성수 실사) ── */
+.hero{ position:relative; margin:0 calc(-1 * clamp(20px,6vw,88px)) 40px; aspect-ratio:16/10;
+  overflow:hidden; background:#26221E; }
+.hero img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:52% 40%;
+  filter:contrast(1.08) saturate(.88) brightness(.98); }
+.hero .grade{ position:absolute; inset:0; z-index:1; mix-blend-mode:soft-light;
+  background:linear-gradient(180deg,#4a6a86 0%,transparent 46%,#7a4a30 100%); opacity:.4; }
+.hero .scrim{ position:absolute; inset:0; z-index:2;
+  background:linear-gradient(180deg,rgba(16,14,12,.42) 0%,rgba(16,14,12,0) 26%,rgba(16,14,12,.05) 50%,rgba(16,14,12,.6) 82%,rgba(16,14,12,.9) 100%); }
+.hero .frost{ position:absolute; left:0; right:0; bottom:0; height:46%; z-index:2;
+  backdrop-filter:blur(6px) saturate(1.04); -webkit-backdrop-filter:blur(6px) saturate(1.04);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 42%); mask-image:linear-gradient(180deg,transparent 0%,#000 42%);
+  background:linear-gradient(180deg,transparent 0%,rgba(14,12,10,.5) 100%); }
+.hero .in{ position:absolute; inset:0; z-index:3; padding:clamp(22px,4vw,46px);
+  display:flex; flex-direction:column; justify-content:space-between; color:#F6F1E9; }
+.hero .mast{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+.hero .mast .m{ font-weight:820; font-size:clamp(13px,1.9vw,17px); letter-spacing:.02em;
+  text-shadow:0 1px 12px rgba(0,0,0,.5); }
+.hero .mast .i{ font-size:12px; letter-spacing:.06em; color:#E7DECF; font-weight:500;
+  text-shadow:0 1px 8px rgba(0,0,0,.6); }
+.hero .hkick{ font-size:12.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:#E9A987; margin-bottom:12px; text-shadow:0 1px 10px rgba(0,0,0,.5); }
+.hero h1.htitle{ font-size:clamp(38px,8vw,68px); line-height:1.0; font-weight:800; letter-spacing:-.035em;
+  margin:0; color:#F8F3EB; text-shadow:0 3px 30px rgba(0,0,0,.5); }
+.hero h1.htitle em{ font-style:normal; color:#E9A987; }
+.hero .hsub{ margin-top:14px; font-size:clamp(13px,1.9vw,17px); font-weight:600; color:#EDE6DA;
+  max-width:40ch; word-break:keep-all; text-shadow:0 1px 12px rgba(0,0,0,.6); }
 
 /* ── 섹션 ────────────────────────────────────── */
 section{ padding:clamp(58px,8.5vw,94px) 0 0; }
@@ -155,10 +183,21 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
 <div class="doc">
 
   <div class="cover">
-    <div class="draft">내용 원본 · 전문 초안 (시각자료 별도)</div>
-    <div class="kicker">Reverse-Engineering Field Study</div>
-    <h1>성수 <em>역설계</em></h1>
-    <p class="lede">완성된 거리에서, 그걸 만든 사람들의 <b>결정</b>을 거꾸로 읽다.</p>
+    <div class="hero">
+      <img src="../이미지/포폴/성수_표지.jpg" alt="무신사 스토어 성수 — 옛 벽돌 창고">
+      <div class="grade"></div><div class="scrim"></div><div class="frost"></div>
+      <div class="in">
+        <div class="mast">
+          <div class="m">FIELD NOTES</div>
+          <div class="i serif" style="font-style:italic">Seongsu, Seoul · 2026.07.04</div>
+        </div>
+        <div>
+          <div class="hkick">Reverse-Engineering Field Study</div>
+          <h1 class="htitle">성수 <em>역설계</em></h1>
+          <div class="hsub">완성된 거리에서, 그걸 만든 사람들의 결정을 거꾸로 읽다.</div>
+        </div>
+      </div>
+    </div>
 
     <div class="purpose">
       <p class="big" style="margin:0">이 문서는 성수를 <u>소개하지</u> 않습니다.</p>
@@ -226,7 +265,7 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
       <strong>매장 밖까지 진하게 퍼진 향이 먼저 저를 붙잡았습니다.</strong> 마침 쓰던 것 말고 <strong>다른 라인도 볼 겸</strong> 들어갔습니다.</p>
     <figure class="fig">
       <div class="frame"><img src="../이미지/포폴/논픽션_매장.jpg" alt="논픽션 성수 매장" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph" style="display:none"><b>⬜ 사진 자리</b><span>논픽션 성수 연무장길 매장 — <b>밖까지 향이 퍼지는</b> 외관/입구</span></div></div>
-      <figcaption>논픽션 성수 연무장길 매장. <span class="cred">— 출처: [기입]</span></figcaption>
+      <figcaption>논픽션 성수 연무장길 매장. <span class="cred">— 출처: 논픽션 공식 홈페이지</span></figcaption>
     </figure>
 
 
@@ -299,7 +338,7 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
       <div><span class="zn">03</span>지식산업센터</div><div><span class="zn">10</span>퍼퓸 플래그십</div>
       <div><span class="zn">04</span>칼 단절 지점</div><div><span class="zn">11</span>연무장길 본선</div>
       <div><span class="zn">05</span>성수일로</div><div><span class="zn">12</span>랜드마크 앞</div>
-      <div><span class="zn">06</span>기다림의 정원</div><div><span class="zn">13</span>아이웨어 800평</div>
+      <div><span class="zn">06</span>기다림의 정원</div><div><span class="zn">13</span>아이웨어 1,000평</div>
       <div><span class="zn">07</span>편집숍 대기열</div><div><span class="zn">14</span>향·바디 라인</div>
     </div>
     <p>거의 모든 매장이 <strong>줄을 세우고 있었습니다.</strong> 방식만 달랐습니다 — 현장 줄, 웨이팅 앱, 사전 예약.
@@ -318,7 +357,7 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
       줄이 아니라 «세계관»으로 사람을 붙잡고 있었습니다. 본 것 셋.</p>
     <figure class="fig">
       <div class="frame"><img src="../이미지/포폴/포어플랜_디저트.jpg" alt="포어플랜 디저트" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph" style="display:none"><b>⬜ 사진 자리</b><span>포어플랜 — <b>도면 위에 놓인 디저트</b> · 자재 스와치가 접시에</span></div></div>
-      <figcaption>포어플랜(성수) — 건축 문법을 접시까지 밀어붙인 디저트. <span class="cred">— 출처: [기입]</span></figcaption>
+      <figcaption>포어플랜(성수) — 건축 문법을 접시까지 밀어붙인 디저트. <span class="cred">— 직접 촬영</span></figcaption>
     </figure>
 
     <div class="obs">
@@ -397,22 +436,22 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
       — 여기서부터 관찰이 «명제»로 넘어갑니다.</div>
   </section>
 
-  <!-- ══ §8 젠틀몬스터 800평 ══ -->
+  <!-- ══ §8 블루 엘리펀트 1,000평 ══ -->
   <section>
     <div class="tag">08 · 두 번째 발견</div>
-    <h2>800평인데, 상품은 <em>얼굴만 합니다</em></h2>
-    <p>지친 상태로 우연히 들어간 곳이 <strong>젠틀몬스터 성수</strong>였습니다. 800평 매장에 상품은 선글라스 하나 —
+    <h2>1,000평인데, 상품은 <em>얼굴만 합니다</em></h2>
+    <p>지친 상태로 우연히 들어간 곳이 <strong>블루 엘리펀트 성수</strong>였습니다. 1,000평 매장에 상품은 선글라스 하나 —
       손바닥만 합니다. 남는 공간은 <strong>미술 설치와 DJ 부스</strong>가 채우고 있었습니다.</p>
     <figure class="fig">
-      <div class="frame"><img src="../이미지/포폴/젠틀몬스터_무대.jpg" alt="젠틀몬스터 성수 무대 연출" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph" style="display:none"><b>⬜ 사진 자리</b><span>젠틀몬스터 성수 — <b>800평 무대 연출</b> · 선글라스는 얼굴만</span></div></div>
-      <figcaption>젠틀몬스터 성수 — 무대 9 : 상품 1. <span class="cred">— 출처: [기입]</span></figcaption>
+      <div class="frame"><img src="../이미지/포폴/블루엘리펀트_무대.jpg" alt="블루 엘리펀트 성수 무대 연출" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph" style="display:none"><b>⬜ 사진 자리</b><span>블루 엘리펀트 성수 — <b>1,000평 무대 연출</b> · 선글라스는 얼굴만</span></div></div>
+      <figcaption>블루 엘리펀트 성수 — 무대 9 : 상품 1. <span class="cred">— 출처: 블루 엘리펀트 공식 홈페이지</span></figcaption>
     </figure>
 
     <p>처음엔 그 스펙터클이 «과한 연출»로 보였습니다. 그런데 되짚으니 반대였습니다 —
-      <strong>연출이 아니라, 상품이 작아서 생긴 «필연»</strong>이었습니다. 800평을 선글라스로 채울 수는 없으니까요.</p>
+      <strong>연출이 아니라, 상품이 작아서 생긴 «필연»</strong>이었습니다. 1,000평을 선글라스로 채울 수는 없으니까요.</p>
     <p class="pull">무대 <em>9</em> : 상품 <em>1</em>.</p>
     <p>아이웨어는 <strong>극장식 리테일에 구조적으로 가장 잘 맞는 상품</strong>입니다. 부피가 작아 공간이 남고,
-      단가는 높아 그 공간을 미술로 채울 여유가 됩니다. 젠틀몬스터가 «예술을 한다»기보다, <strong>선글라스라는 상품이
+      단가는 높아 그 공간을 미술로 채울 여유가 됩니다. 블루 엘리펀트가 «예술을 한다»기보다, <strong>선글라스라는 상품이
       그 형식을 요구</strong>한 것에 가깝습니다.</p>
     <div class="spine">“대단하다”가 아니라 <b>“왜 이렇게 될 수밖에 없었나”</b>로 되짚은 대목입니다. 감탄은 관광기,
       필연의 추적은 분석입니다. 회사의 «화려한 사업»도 같은 눈으로 — 무엇이 그걸 가능하게 했는지 되짚습니다.</div>
@@ -447,7 +486,7 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
       도쿄 <strong>다이칸야마</strong>입니다 — 같은 «저층·디자인 주도» 창의지구가 먼저 지나온 길입니다.</p>
     <figure class="fig">
       <div class="frame"><img src="../이미지/포폴/다이칸야마_츠타야.jpg" alt="다이칸야마 T-SITE 츠타야 서점" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="ph" style="display:none"><b>⬜ 사진 자리</b><span>다이칸야마 T-SITE · 츠타야 서점 — <b>«숲속 도서관»</b></span></div></div>
-      <figcaption>다이칸야마 T-SITE(2011) — 체험형 리테일의 완성형. <span class="cred">— 출처: [기입]</span></figcaption>
+      <figcaption>다이칸야마 T-SITE(2011) — 체험형 리테일의 완성형. <span class="cred">— 출처: 다이칸야마 T-SITE 공식</span></figcaption>
     </figure>
 
 
@@ -476,7 +515,7 @@ p strong, li strong{ color:var(--ink); font-weight:750; }
       같은 이동이 여러 곳에서, 그리고 <strong>이미 성수에서도</strong> 보입니다.</p>
     <div class="obs">
       <div><b>애플 스토어 «Today at Apple» <span style="font-weight:600;color:var(--faint)">(전 세계)</span>.</b> 직원이 물건을 파는 게 아니라 <b>강좌를 여는 사람</b>이 됐습니다 — 판매대가 교실이 됐죠.</div>
-      <div><b>젠틀몬스터 <span style="font-weight:600;color:var(--faint)">(성수 · §8)</span>.</b> 매장 직원이 판매원보다 <b>«전시 안내자»</b>에 가깝습니다 — <strong>성수에서 이미 시작된</strong> 자리입니다.</div>
+      <div><b>블루 엘리펀트 <span style="font-weight:600;color:var(--faint)">(성수 · §8)</span>.</b> 매장 직원이 판매원보다 <b>«전시 안내자»</b>에 가깝습니다 — <strong>성수에서 이미 시작된</strong> 자리입니다.</div>
       <div><b>새로 생긴 자리 <span style="font-weight:600;color:var(--faint)">(채용시장)</span>.</b> 공간 기획 · 브랜드 경험(BX) · 팝업 기획 — 십 년 전엔 없던 자리가 공고에 생겼습니다. <span style="color:var(--och)">(추론)</span></div>
     </div>
     <p>정리하면 — 리테일 노동이 <strong>«상품을 파는 일»에서 «경험을 설계하고 안내하는 일»로</strong> 옮겨가는 <strong>«흐름»</strong>이고,
