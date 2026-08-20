@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>성수 역설계 — 제작 노트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+@font-face{ font-family:'Pretendard Variable'; font-weight:45 920; font-style:normal;
+  font-display:swap; src:url('../_assets/PretendardVariable.woff2') format('woff2-variations'); }
+:root{
+  --paper:#F7F4EF; --ink:#1A1613; --ink2:#3A342E; --mut:#8A8177; --faint:#C4BCAF;
+  --och:#B24A2A; --rule:#E4DED4; --stage:#0E0B09;
+}
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ -webkit-text-size-adjust:100%; }
+body{ font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+  background:#DAD4C9; color:var(--ink); line-height:1.85; letter-spacing:-.006em;
+  -webkit-font-smoothing:antialiased; font-feature-settings:"ss01"; }
+.serif{ font-family:'EB Garamond',Georgia,serif; }
+.paper{ max-width:1160px; margin:0 auto; background:var(--paper); }
+em{ font-style:normal; }
+
+/* ── 표지 히어로 ── */
+.hero{ position:relative; width:100%; aspect-ratio:16/10; overflow:hidden; background:var(--stage); }
+.hero img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:52% 40%;
+  filter:contrast(1.08) saturate(.88) brightness(.98); }
+.hero .grade{ position:absolute; inset:0; z-index:1; mix-blend-mode:soft-light;
+  background:linear-gradient(180deg,#4a6a86 0%,transparent 46%,#7a4a30 100%); opacity:.4; }
+.hero .scrim{ position:absolute; inset:0; z-index:2;
+  background:linear-gradient(180deg,rgba(16,14,12,.42) 0%,rgba(16,14,12,0) 26%,rgba(16,14,12,.05) 50%,rgba(16,14,12,.6) 82%,rgba(16,14,12,.9) 100%); }
+.hero .frost{ position:absolute; left:0; right:0; bottom:0; height:46%; z-index:2;
+  backdrop-filter:blur(6px) saturate(1.04); -webkit-backdrop-filter:blur(6px) saturate(1.04);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 42%); mask-image:linear-gradient(180deg,transparent 0%,#000 42%);
+  background:linear-gradient(180deg,transparent 0%,rgba(14,12,10,.5) 100%); }
+.hero .in{ position:absolute; inset:0; z-index:3; padding:clamp(24px,4.5vw,54px);
+  display:flex; flex-direction:column; justify-content:space-between; color:#F6F1E9; }
+.hero .mast{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+.hero .mast .m{ font-weight:820; font-size:clamp(13px,1.9vw,17px); letter-spacing:.06em; text-shadow:0 1px 12px rgba(0,0,0,.5); }
+.hero .mast .i{ font-size:12.5px; letter-spacing:.06em; color:#E7DECF; font-weight:500; text-shadow:0 1px 8px rgba(0,0,0,.6); }
+.hero .hkick{ font-size:12.5px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+  color:#E9A987; margin-bottom:14px; text-shadow:0 1px 10px rgba(0,0,0,.5); }
+.hero h1.htitle{ font-size:clamp(40px,8.5vw,74px); line-height:1.0; font-weight:760; letter-spacing:-.035em;
+  margin:0; color:#F8F3EB; text-shadow:0 3px 30px rgba(0,0,0,.5); }
+.hero h1.htitle em{ color:#E9A987; }
+.hero .hsub{ margin-top:16px; font-size:clamp(14px,2vw,18px); font-weight:500; color:#EDE6DA;
+  max-width:42ch; word-break:keep-all; text-shadow:0 1px 12px rgba(0,0,0,.6); font-family:'EB Garamond',Pretendard,serif; font-style:italic; }
+
+/* 표지 하단 — 조용한 선언 + 메타 */
+.coverpad{ padding:clamp(48px,7vw,86px) clamp(22px,6vw,84px) 0; }
+.coverlede .big{ font-size:clamp(24px,3.6vw,38px); font-weight:300; line-height:1.5; letter-spacing:-.02em; color:var(--ink); margin-bottom:20px; }
+.coverlede .big em{ color:var(--och); font-weight:500; }
+.coverlede p{ font-size:17px; color:var(--ink2); max-width:60ch; line-height:1.9; }
+.coverlede p b{ color:var(--ink); font-weight:600; }
+.cmeta{ display:flex; flex-wrap:wrap; gap:6px 40px; margin-top:40px; padding-top:22px; border-top:1px solid var(--ink);
+  font-size:13.5px; color:var(--mut); font-family:'EB Garamond',Pretendard,serif; }
+.cmeta b{ color:var(--ink2); font-weight:600; font-style:normal; font-family:'Pretendard Variable',sans-serif; margin-right:4px; }
+
+/* ── 리드 사진 (어두운 무대) ── */
+.lead{ position:relative; width:100%; background:var(--stage); display:flex; justify-content:center;
+  padding:clamp(0px,0vw,0px) 0; overflow:hidden; margin-top:clamp(40px,6vw,80px); }
+.lead.cover-fit img{ width:100%; height:100%; object-fit:cover; }
+.lead.frame{ padding:clamp(22px,3vw,44px) 0; }
+.lead img{ width:100%; height:auto; display:block; filter:contrast(1.05) saturate(.94) brightness(.99); }
+.lead.frame img{ width:auto; max-width:88%; height:auto; max-height:700px; object-fit:contain; filter:contrast(1.05) saturate(.98); }
+.lead figcaption{ position:absolute; left:clamp(20px,5vw,64px); bottom:20px; right:20px; color:#EDE6DA;
+  font-size:13.5px; font-family:'EB Garamond',Pretendard,serif; font-style:italic; text-shadow:0 1px 14px rgba(0,0,0,.7); }
+.lead figcaption b{ font-style:normal; font-weight:600; }
+
+/* ── 스프레드 (번호 거터 | 본문) ── */
+.spread{ display:grid; grid-template-columns:minmax(96px,1fr) minmax(0,3.15fr);
+  gap:clamp(20px,4.5vw,64px); padding:clamp(52px,8vw,104px) clamp(22px,6vw,84px) clamp(20px,3vw,44px); }
+.gutter{ position:relative; }
+.num{ font-family:'EB Garamond',serif; font-weight:400; font-size:clamp(58px,9vw,132px);
+  line-height:.82; color:var(--faint); letter-spacing:-.02em; }
+.gutter .lbl{ margin-top:14px; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); }
+.col{ max-width:60ch; }
+.eyebrow{ font-family:'EB Garamond',serif; font-style:italic; font-size:17px; color:var(--och); margin-bottom:20px; }
+.disp{ font-weight:300; font-size:clamp(28px,4.3vw,50px); line-height:1.3; letter-spacing:-.022em; color:var(--ink); margin-bottom:32px; word-break:keep-all; }
+.disp em{ font-weight:500; color:var(--och); }
+.body{ font-size:17px; color:var(--ink2); margin:0 0 20px; line-height:1.95; }
+.body:last-child{ margin-bottom:0; }
+.body b, .body strong{ color:var(--ink); font-weight:600; }
+.subhead{ font-size:19px; font-weight:500; color:var(--ink); margin:38px 0 4px; }
+
+/* 조용한 마진 노트 (구 spine) */
+.aside{ margin:40px 0 6px; padding-left:26px; border-left:1px solid var(--faint); color:var(--mut); font-size:15.5px; line-height:1.85; }
+.aside .am{ display:block; font-family:'EB Garamond',serif; font-style:italic; font-size:14px; color:var(--och); margin-bottom:7px; }
+.aside b{ color:var(--ink2); font-weight:600; }
+
+/* 인라인 큰 인용 */
+.pull{ margin:44px 0; font-size:clamp(23px,3.2vw,34px); font-weight:300; line-height:1.42; color:var(--ink); letter-spacing:-.02em; }
+.pull em{ color:var(--och); font-weight:400; }
+.quote{ margin:52px auto; max-width:24ch; text-align:center; font-family:'EB Garamond',Georgia,serif; font-style:italic;
+  font-size:clamp(24px,3.6vw,38px); line-height:1.4; color:var(--ink); }
+.quote .kr{ display:block; font-family:'Pretendard Variable',sans-serif; font-style:normal; font-weight:300; font-size:.78em; margin-top:14px; max-width:none; }
+
+/* 헤어라인 목록 (구 method/ladder/obs) */
+.list{ margin:32px 0; }
+.list .row{ display:grid; grid-template-columns:minmax(120px,1fr) 2.7fr; gap:24px; border-top:1px solid var(--rule); padding:18px 0; align-items:baseline; }
+.list .row:last-child{ border-bottom:1px solid var(--rule); }
+.list .k{ font-weight:600; color:var(--ink); font-size:16px; }
+.list .k small{ display:block; color:var(--mut); font-weight:500; font-size:12.5px; margin-top:4px; letter-spacing:.02em; }
+.list .v{ color:var(--ink2); font-size:15.5px; line-height:1.8; }
+.list .v b, .list .v strong{ color:var(--ink); font-weight:600; }
+.list.solo .row{ grid-template-columns:1fr; }
+
+/* 관계표 (구 infer/cmp/transfer) — 채움 없이 헤어라인만 */
+.rel{ margin:34px 0; }
+.rel .h,.rel .r{ display:grid; gap:24px; }
+.rel .h{ padding-bottom:10px; border-bottom:1px solid var(--ink); font-family:'EB Garamond',Pretendard,serif; font-style:italic; font-size:14px; color:var(--mut); }
+.rel .r{ border-top:1px solid var(--rule); padding:16px 0; font-size:15.5px; }
+.rel .r:first-of-type{ border-top:0; }
+.rel .lab{ font-weight:600; color:var(--ink); }
+.rel .a{ color:var(--mut); }
+.rel .b{ color:var(--ink2); }
+.rel.two .h,.rel.two .r{ grid-template-columns:1fr 1fr; }
+.rel.three .h,.rel.three .r{ grid-template-columns:1.05fr 1fr 1fr; }
+.rel .r.gap .b{ color:var(--och); font-weight:600; }
+.rel .r.gap .a{ color:var(--faint); }
+
+/* 구간 목록 */
+.zones{ display:grid; grid-template-columns:1fr 1fr; gap:0 48px; margin:32px 0; }
+.zones .z{ display:flex; gap:16px; padding:11px 0; border-top:1px solid var(--rule); font-size:15px; color:var(--ink2); }
+.zones .zn{ font-family:'EB Garamond',serif; color:var(--och); font-variant-numeric:tabular-nums; min-width:22px; }
+
+/* 다이어리 타임라인 */
+.diary{ margin:34px 0; }
+.diary .dh{ font-family:'EB Garamond',Pretendard,serif; font-style:italic; color:var(--mut); font-size:14px; margin-bottom:8px; }
+.diary .d{ display:grid; grid-template-columns:86px 1fr; gap:22px; border-top:1px solid var(--rule); padding:15px 0; align-items:baseline; }
+.diary .t{ font-family:'EB Garamond',serif; color:var(--och); font-variant-numeric:tabular-nums; font-size:18px; }
+.diary .s{ color:var(--ink2); font-size:15.5px; } .diary .s strong{ color:var(--ink); font-weight:600; }
+
+/* 큰 숫자 */
+.nums{ display:flex; flex-wrap:wrap; gap:40px 56px; margin:40px 0; }
+.nums .n .v{ font-family:'EB Garamond',serif; font-size:clamp(44px,6vw,60px); line-height:.9; color:var(--ink); letter-spacing:-.01em; }
+.nums .n .v i{ font-style:normal; font-size:.36em; color:var(--mut); margin-left:4px; }
+.nums .n.zero .v{ color:var(--och); }
+.nums .n .l{ font-size:13px; color:var(--mut); margin-top:10px; }
+
+/* 이론 */
+.theory{ margin:32px 0; }
+.theory .t{ border-top:1px solid var(--rule); padding:15px 0; font-size:15.5px; color:var(--ink2); }
+.theory .t:last-child{ border-bottom:1px solid var(--rule); }
+.theory .who{ font-weight:600; color:var(--ink); } .theory .who i{ font-style:normal; color:var(--mut); font-weight:500; }
+.theory .what{ font-family:'EB Garamond',Pretendard,serif; font-style:italic; color:var(--och); }
+
+/* 플래그십 4분할 */
+.grid4{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:38px 0 10px; }
+.grid4 figure{ margin:0; position:relative; overflow:hidden; background:var(--stage); aspect-ratio:4/3; }
+.grid4 img{ width:100%; height:100%; object-fit:cover; filter:contrast(1.04) saturate(.9); display:block; }
+.grid4 .t{ position:absolute; left:0; right:0; bottom:0; padding:22px 12px 9px; z-index:1; color:#F2ECE2;
+  font-size:12px; letter-spacing:.04em; font-weight:600; background:linear-gradient(0deg,rgba(14,11,9,.74),transparent); }
+.gcap{ font-size:13px; color:var(--mut); margin-top:8px; font-family:'EB Garamond',Pretendard,serif; font-style:italic; }
+
+/* 닫는 말 */
+.close{ margin:0; padding:clamp(52px,8vw,104px) clamp(22px,6vw,84px) clamp(70px,10vw,140px);
+  border-top:1px solid var(--ink); }
+.close .big{ font-size:clamp(24px,3.4vw,36px); font-weight:300; line-height:1.5; letter-spacing:-.02em; color:var(--ink); max-width:30ch; }
+.close .big em{ color:var(--och); font-weight:400; }
+
+@media(max-width:760px){
+  .spread{ grid-template-columns:1fr; gap:6px; padding-top:56px; }
+  .num{ font-size:64px; }
+  .list .row,.diary .d{ grid-template-columns:1fr; gap:6px; }
+  .rel.two .h,.rel.two .r,.rel.three .h,.rel.three .r{ grid-template-columns:1fr; gap:6px; }
+  .rel .h{ display:none; }
+  .zones{ grid-template-columns:1fr; }
+  .grid4{ grid-template-columns:1fr; }
+  .lead.frame img{ max-width:100%; }
+}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <!-- ══ 표지 ══ -->
+  <div class="hero">
+    <img src="../이미지/포폴/성수_표지.jpg" alt="무신사 스토어 성수 — 옛 벽돌 창고">
+    <div class="grade"></div><div class="scrim"></div><div class="frost"></div>
+    <div class="in">
+      <div class="mast"><div class="m">제작 노트 · MAKING NOTES</div><div class="i serif" style="font-style:italic">Seongsu, Seoul · 2026.07.04</div></div>
+      <div>
+        <div class="hkick">Reverse-Engineering Field Study</div>
+        <h1 class="htitle">성수 <em>역설계</em></h1>
+        <div class="hsub">완성된 거리에서, 그걸 만든 사람들의 결정을 거꾸로 읽다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="coverpad">
+    <div class="coverlede">
+      <p class="big">이 문서는 성수를 <em>소개하지</em> 않습니다.</p>
+      <p>완성된 공간에서 <b>그걸 만든 사람의 결정을 거꾸로 읽어내는 눈</b> 하나를 — 성수라는 실제 사례에 대고 <b>증명</b>합니다.
+        그러니 여기 적힌 관찰은 성수에 대한 정보가 아니라, <b>그 눈이 실제로 작동한다는 증거</b>입니다.
+        같은 눈은 처음 보는 어떤 회사에도 그대로 댈 수 있고 — 마지막 절이 그걸 보입니다.</p>
+    </div>
+    <div class="cmeta">
+      <span><b>대상</b> 서울 성수동 · 도보 관찰 + 매장 방문</span>
+      <span><b>일시</b> 2026.07.04 (토) 오후 · 27℃ 고습</span>
+      <span><b>방법</b> 역설계 4축 · 관찰 메모 3종</span>
+      <span><b>관찰자</b> 김성진</span>
+    </div>
+  </div>
+
+  <!-- ══ 읽는 분께 ══ -->
+  <div class="spread">
+    <div class="gutter"><div class="num serif">·</div><div class="lbl">읽는 분께</div></div>
+    <div class="col">
+      <div class="eyebrow">Before you read</div>
+      <h2 class="disp">이 문서가 뭔지 —<br>30초면 됩니다</h2>
+      <p class="body">저는 성수를 한 바퀴 걷고, 거기서 «완성된 것을 거꾸로 읽는 눈» 하나를 만들었습니다.
+        이 문서는 그 눈이 처음부터 끝까지 어떻게 작동하는지를 보여줍니다.</p>
+      <p class="body">그러니 <b>성수를 몰라도 괜찮습니다.</b> 여기서 보실 건 «성수 정보»가 아니라 —
+        완성된 것에서 <b>«누가, 무엇을 얻으려고, 무엇을 버렸나»를 거꾸로 읽어내는 방법</b>입니다.
+        그리고 그 눈은 <b>«회사»에도 대고</b> — 무엇보다 <b>«내가 어디로 향할지», 즉 진로에도 댑니다.</b> 회사를 겨누는 데(취업)와 방향을 잡는 데(진로), 둘 다입니다.</p>
+      <p class="aside"><span class="am">겁먹지 마세요</span> 이건 제가 «끝까지» 판 겁니다 — 여러분은 이 중 <b>«한 조각»만</b> 하면 됩니다.
+        <b>짜증 한 줄</b>에서 시작해도 괜찮아요. 저도 그랬거든요(향을 못 맡고 나온 5분, 그게 시작이었습니다).</p>
+    </div>
+  </div>
+
+  <!-- ══ §0 방법 ══ -->
+  <div class="spread">
+    <div class="gutter"><div class="num serif">00</div><div class="lbl">이 문서가 쓰는 눈</div></div>
+    <div class="col">
+      <div class="eyebrow">The method, first</div>
+      <h2 class="disp">먼저 <em>방법</em>을 꺼내 둡니다 —<br>뒤는 전부 이 눈의 «적용»입니다</h2>
+      <p class="body">완성된 것은 결과입니다. 매장도, 거리도, 회사도, 우리에겐 <b>다 지어진 채로</b> 도착합니다.
+        그 안에서 어떤 결정이 있었는지는 보이지 않습니다. <b>역설계는 그 결과에서 결정을 거꾸로 짚는 일</b>입니다.</p>
+      <p class="body">거창한 게 아닙니다. 떡볶이를 먹고 “아, 여기 물엿을 넣었네”라고 되짚는 것과 같은 동작을, 공간과 회사에
+        대고 하는 것뿐입니다. 이 문서는 그 짚기를 두 개의 도구로 굴렸습니다.</p>
+      <div class="list">
+        <div class="row"><div class="k">관찰 3종<small>무엇을 찍나</small></div>
+          <div class="v"><b>CT 메모</b>(나를 찍는다 — 내 몸이 뭐에 반응했나) · <b>불편 메모</b>(현장을 찍는다 — 뭐가 걸렸나) · <b>답사 메모</b>(바깥을 찍는다 — 거리 전체가 어떻게 도나)</div></div>
+        <div class="row"><div class="k">역설계 4축<small>무엇을 묻나</small></div>
+          <div class="v"><b>① 타깃</b> 누구를 기준으로 만들었나 · <b>② 맞바꿈</b> 뭘 얻으려고 뭘 버렸나 · <b>③ 자원</b> 무엇으로 굴리나 · <b>④ 수익</b> 어디서 버나</div></div>
+      </div>
+      <p class="body" style="font-size:15px;color:var(--mut)">이 넷은 “무엇을 만들든” 누군가 반드시 정해야 하는 자리입니다. 그래서 매장에도, 카페에도, 회사에도 똑같이 물을 수 있습니다.</p>
+      <p class="aside"><span class="am">이 문서의 척추</span> 형태가 달라도 그 자리를 채운 <b>«결정»은 반복</b>됩니다.
+        그래서 <b>처음 보는 곳도 읽힙니다.</b> 성수는 그 반복을 눈앞에서 확인한 실습장일 뿐입니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §1 논픽션 5분 ══ -->
+  <figure class="lead frame">
+    <img src="../이미지/포폴/논픽션_매장.jpg" alt="논픽션 성수 매장">
+    <figcaption><b>논픽션 성수 연무장길 매장.</b> 출처: 논픽션 공식 홈페이지</figcaption>
+  </figure>
+  <div class="spread">
+    <div class="gutter"><div class="num serif">01</div><div class="lbl">조사가 열린 자리</div></div>
+    <div class="col">
+      <div class="eyebrow">Five minutes, nothing bought</div>
+      <h2 class="disp">팬이 <em>못 사고 나온 5분</em>이<br>이 조사를 열었습니다</h2>
+      <p class="body">2026년 7월 4일 토요일 오후, 27℃에 습기까지 낀 날이었습니다. 저는 <b>논픽션</b>을
+        몇 년째 쓰는 사람입니다 — 핸드워시도 바디워시도 늘 이 브랜드입니다. 그날 성수 연무장길을 걷는데 —
+        <b>매장 밖까지 진하게 퍼진 향이 먼저 저를 붙잡았습니다.</b> 마침 쓰던 것 말고 <b>다른 라인도 볼 겸</b> 들어갔습니다.</p>
+      <p class="body">그런데 <b>향을 파는 곳에서, 향을 하나도 못 맡고 나왔습니다.</b> 밖에서 저를 완벽하게 유혹한 그 향이 — 안에서는 너무 세서 <b>아무것도 판별할 수 없게</b> 만들었습니다. 순서는 이랬습니다.</p>
+      <div class="diary">
+        <div class="dh">2026.07.04 (토) · 성수 연무장길 · 논픽션</div>
+        <div class="d"><div class="t">15:42</div><div class="s">문을 열자 향이 훅 — <strong>코가 아릴 정도</strong>로 실내 발향이 셌다.</div></div>
+        <div class="d"><div class="t">15:45</div><div class="s">세면대에서 핸드워시를 직접 손에 써 봤다. <strong>아무 향도 안 남았다.</strong></div></div>
+        <div class="d"><div class="t">15:46</div><div class="s">스태프가 시향지를 권했다. 3초 맡고 <strong>그대로 내려놨다</strong> — 이미 코가 마비된 상태.</div></div>
+        <div class="d"><div class="t">15:47</div><div class="s">나왔다. <strong>아무것도 사지 않았다.</strong></div></div>
+      </div>
+      <div class="nums">
+        <div class="n"><div class="v">5<i>분</i></div><div class="l">체류</div></div>
+        <div class="n"><div class="v">2<i>회</i></div><div class="l">시도(핸드워시·시향지)</div></div>
+        <div class="n zero"><div class="v">0<i>개</i></div><div class="l">향 판별</div></div>
+        <div class="n zero"><div class="v">0<i>원</i></div><div class="l">구매</div></div>
+      </div>
+      <p class="body">여기서 <b>화를 내고 끝냈다면 그냥 후기</b>였을 겁니다. 저는 대신 폰을 열어 메모를 남겼습니다. 늘 쓰는 형식 그대로 —
+        <b>날짜 / 장소 / 내용</b> 순으로 적습니다. 날짜와 장소를 먼저 박아 두면 나중에 <b>다시 찾기가 쉽고</b>,
+        무엇보다 한참 뒤에 펼쳤을 때 <b>그날의 풍경이 함께 떠오릅니다</b> — “성수 연무장길”이라는 다섯 글자가 그 27℃의 공기까지 불러옵니다.
+        내용은 <b>감정을 나타내는 낱말은 한 개도 쓰지 않고</b>, 본 것과 몸이 한 일만. 그리고 한 줄의 질문을 남겼습니다.</p>
+      <p class="pull">“팬이 향을 못 맡게 만들어놓고 — <em>왜 이렇게 만들었을까?</em>”</p>
+      <p class="body">이 질문이 조사의 시작점입니다. 향이 센 건 실수일 수도, 설계일 수도 있습니다. 한 매장만 보면 알 수 없습니다.
+        그래서 <b>매장 밖으로 나가, 이 거리 전체가 같은 문법으로 도는지</b>를 확인하기로 했습니다.
+        아래부터는 그 확인의 기록입니다 — 그리고 매 장면 끝에서, <b>같은 눈이 회사에서는 어디에 닿는지</b>를 함께 답니다.</p>
+      <p class="aside"><span class="am">관광기 vs 포트폴리오</span> 개인적인 짜증이 아니라 <b>조사를 여는 «가설의 씨앗»</b>으로 씁니다.
+        포트폴리오는 “무슨 일이 있었나”가 아니라 “그 일에서 <b>무엇을 묻기 시작했나</b>”를 보여주는 문서입니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §2 관찰 → 추론 ══ -->
+  <div class="spread">
+    <div class="gutter"><div class="num serif">02</div><div class="lbl">관찰에서 추론으로</div></div>
+    <div class="col">
+      <div class="eyebrow">What I saw, what I inferred</div>
+      <h2 class="disp">본 것에서 뻗지 않은 <em>추측은 하나도 없습니다</em></h2>
+      <p class="body">그 5분의 질문을 네 줄로 따라가 봤습니다. 왼쪽은 <b>실제로 본 것</b>, 오른쪽은 <b>거기서만 뻗은 추측</b>입니다.
+        둘을 갈라 두는 이유는 하나 — 누가 반박해 오면 <b>어느 줄이 틀렸는지 정확히 짚을 수 있어야</b> 하기 때문입니다.</p>
+      <div class="rel two">
+        <div class="h"><div>본 것</div><div>그래서 추측한 것</div></div>
+        <div class="r"><div class="a">매장 밖까지 향이 진하게 퍼진다</div><div class="b">지나가는 사람을 향으로 먼저 붙잡는다</div></div>
+        <div class="r"><div class="a">입구부터 끝까지 향이 세다</div><div class="b">공간 전체가 하나의 무대다</div></div>
+        <div class="r"><div class="a">스태프가 먼저 시향을 권한다</div><div class="b">응대에 절차가 짜여 있다</div></div>
+        <div class="r"><div class="a">앉을 자리가 없다</div><div class="b">짧게 보고 나갈 손님을 전제한다</div></div>
+      </div>
+      <p class="body">넷을 합치면 하나가 남습니다. 이 매장은 머무르게 하는 쪽이 아니라 <b>«끌어당겨 빨리 내보내는» 쪽을 골랐습니다.</b>
+        그렇게 보면 <b>향이 센 것도 실수가 아닙니다</b> — 지나가는 사람의 코를 순간에 붙잡는 장치일 수 있습니다.
+        팬인 제 코가 마비된 건, 그 설계가 «오래 쓰는 사람»이 아니라 «처음 지나가는 사람»에 맞춰졌기 때문입니다.</p>
+      <p class="aside"><span class="am">분석과 감상을 가르는 선</span> 관광기는 “향이 셌다”에서 멈춥니다. 포트폴리오는 <b>본 것과 추측을 갈라</b> 틀릴 수 있는 자리를 스스로 드러냅니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §3 14구간 ══ -->
+  <figure class="lead frame">
+    <img src="../이미지/포폴/성수_본선인파.jpg" alt="성수 본선 인파">
+    <figcaption><b>성수 본선</b> — 이름 말고 «방향»으로 찾아오는 젊은 층. 사진: 김성진 · 2026.07.04</figcaption>
+  </figure>
+  <div class="spread">
+    <div class="gutter"><div class="num serif">03</div><div class="lbl">한 곳인가, 규칙인가</div></div>
+    <div class="col">
+      <div class="eyebrow">One store, or a grammar?</div>
+      <h2 class="disp">한 매장만 보고 «구조»라 부르면 —<br>그건 <em>우연</em>입니다</h2>
+      <p class="body">지금까지는 논픽션 <b>한 곳</b>의 이야기입니다. 이 매장만의 선택일 수도 있습니다. 그래서 매장을 나와,
+        성수를 <b>가장자리에서 본선까지</b> 걸으며 열네 구간을 찍었습니다. 확인하려던 건 하나 — <b>이 문법이 거리 전체에 반복되는가.</b></p>
+      <div class="zones">
+        <div class="z"><span class="zn">01</span>뚝섬 가장자리</div><div class="z"><span class="zn">08</span>패션 플래그십</div>
+        <div class="z"><span class="zn">02</span>수제화거리</div><div class="z"><span class="zn">09</span>연무장길 초입</div>
+        <div class="z"><span class="zn">03</span>지식산업센터</div><div class="z"><span class="zn">10</span>퍼퓸 플래그십</div>
+        <div class="z"><span class="zn">04</span>칼 단절 지점</div><div class="z"><span class="zn">11</span>연무장길 본선</div>
+        <div class="z"><span class="zn">05</span>성수일로</div><div class="z"><span class="zn">12</span>랜드마크 앞</div>
+        <div class="z"><span class="zn">06</span>기다림의 정원</div><div class="z"><span class="zn">13</span>아이웨어 1,000평</div>
+        <div class="z"><span class="zn">07</span>편집숍 대기열</div><div class="z"><span class="zn">14</span>향·바디 라인</div>
+      </div>
+      <p class="body">거의 모든 매장이 <b>줄을 세우고 있었습니다.</b> 방식만 달랐습니다 — 현장 줄, 웨이팅 앱, 사전 예약.
+        그리고 방문객 구성이 눈에 띄었습니다. <b>한국인 8 : 외국인 2</b>, 그 한국인의 대부분이 10~20대.
+        <b>명동의 정확한 반전</b>이었습니다. 명동이 외국인·전 연령의 관광지라면, 성수는 내국인·젊은 층이 «일부러 찾아오는» 목적지였습니다.</p>
+      <p class="aside"><span class="am">한 곳 → 열네 곳</span> 표본을 넓힌 이유: <b>반복이 확인돼야 «구조»라 부를 수 있습니다.</b>
+        회사도 같습니다 — 공고 한 줄이 아니라 여러 자리를 겹쳐 봐야 «방향»이 보입니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §4 포어플랜 ══ -->
+  <figure class="lead frame">
+    <img src="../이미지/포폴/포어플랜_디저트.jpg" alt="포어플랜 디저트">
+    <figcaption><b>포어플랜(성수)</b> — 건축 문법을 접시까지 밀어붙인 디저트. 직접 촬영</figcaption>
+  </figure>
+  <div class="spread">
+    <div class="gutter"><div class="num serif">04</div><div class="lbl">정반대로 만든 곳</div></div>
+    <div class="col">
+      <div class="eyebrow">No queue — a worldview instead</div>
+      <h2 class="disp">가장자리엔 줄이 없었습니다 —<br>대신 <em>세계관</em>이 있었습니다</h2>
+      <p class="body">본선이 전부 줄을 세울 때, 가장자리의 <b>포어플랜</b>은 정반대였습니다. 건축 설계의 문법으로 만든 디저트 공간인데 —
+        줄이 아니라 «세계관»으로 사람을 붙잡고 있었습니다. 본 것 셋.</p>
+      <div class="list">
+        <div class="row"><div class="k">도면 위의 디저트</div><div class="v">접시가 아니라 도면, 받침엔 치수까지 — 3600 × 1500.</div></div>
+        <div class="row"><div class="k">지질학 설명 카드</div><div class="v">맛이 아니라, <b>눌려서 굳은 과정</b>을 적어 뒀다.</div></div>
+        <div class="row"><div class="k">접시 위 자재 스와치</div><div class="v">색 견본 세 개가 디저트와 같이 나온다.</div></div>
+      </div>
+      <p class="body">여기서 파는 건 커피가 아니라 <b>«집착»</b>이었습니다. 큰길 가게는 지나가는 사람이 먹여 살리고 —
+        <b>가장자리 가게는 세계관이 먹여 살립니다.</b> 목적지가 되지 못하면 가장자리는 죽으니까요.
+        결정적인 건, 건축을 «테마»로 빌린 게 아니라 <b>그 문법을 메뉴·기물·서빙까지 끝까지 밀어붙였다</b>는 점입니다 — 세계관이 새는 자리가 한 군데도 없었습니다.</p>
+      <p class="aside"><span class="am">한 쌍의 맞바꿈</span> 같은 거리, 정반대 설계. 둘 다 <b>«맞바꿈»의 결과</b>입니다 — 본선은 «접근성»을 얻고 «희소함»을 버렸고,
+        포어플랜은 «희소함»을 얻고 «접근성»을 버렸습니다. 회사의 전략도 이 한 쌍의 맞바꿈으로 읽힙니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §5 지붕 벗긴 백화점 ══ -->
+  <figure class="lead frame">
+    <img src="../이미지/포폴/성수_무신사창고.jpg" alt="무신사 스토어 성수 옛 창고">
+    <figcaption><b>무신사 스토어 성수</b> — 옛 벽돌 창고에 들어온 새 브랜드, 뒤로는 새 아파트. 사진: 김성진 · 2026.07.04</figcaption>
+  </figure>
+  <div class="spread">
+    <div class="gutter"><div class="num serif">05</div><div class="lbl">큰 틀</div></div>
+    <div class="col">
+      <div class="eyebrow">A department store, roof removed</div>
+      <h2 class="disp">걷다 보니 이상하게 익숙했습니다 —<br><em>지붕을 벗긴 백화점</em>이었습니다</h2>
+      <p class="body">열네 구간을 다 걷고 나니 기시감이 왔습니다. 성수는 힙한 신생 동네처럼 보이지만, 구조는 낯익었습니다 —
+        <b>백화점을 눕혀서 길바닥에 펼쳐 놓은 것</b>이었습니다. 지붕을 벗기면, 백화점의 장치가 그대로 눕습니다. 단 한 칸만 빼고.</p>
+      <div class="rel three">
+        <div class="h"><div>백화점 장치</div><div>백화점 (수직)</div><div>성수 (수평)</div></div>
+        <div class="r"><div class="lab">고객 거르기</div><div class="a">층별 필터링</div><div class="b">매장별 필터링</div></div>
+        <div class="r"><div class="lab">안내</div><div class="a">안내데스크</div><div class="b">웨이팅 앱</div></div>
+        <div class="r"><div class="lab">유인</div><div class="a">1층 시향 코너</div><div class="b">거리까지 새어 나온 향</div></div>
+        <div class="r"><div class="lab">접근 통제</div><div class="a">발레파킹</div><div class="b">차 없는 거리</div></div>
+        <div class="r gap"><div class="lab">쉼</div><div class="a">라운지 · 정원</div><div class="b">없음 — 한 칸만 끊긴다</div></div>
+      </div>
+      <p class="body">넷은 형태만 바꿔 그대로 눕는데, <b>«쉼» 한 칸만 비어 있었습니다.</b> 이 한 칸이 뒤 절의 전부입니다.</p>
+      <p class="aside"><span class="am">척추가 맞아떨어진 지점</span> <b>형태가 달라도 기능은 반복됩니다.</b> 그래서 처음 보는 곳도 읽힙니다 — 이게 §0에서 깔아둔 척추가
+        실제로 맞아떨어진 지점입니다. 회사도 마찬가지로, 업종이 달라도 «채워야 하는 자리»는 반복됩니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §6 운영자 ══ -->
+  <div class="spread">
+    <div class="gutter"><div class="num serif">06</div><div class="lbl">그 한 칸이 왜 비는가</div></div>
+    <div class="col">
+      <div class="eyebrow">One difference — no single operator</div>
+      <h2 class="disp">차이는 하나 — <em>운영자가 없습니다</em></h2>
+      <p class="body">왜 «쉼» 한 칸만 끊겼을까요. 답은 소유 구조에 있었습니다.</p>
+      <div class="list">
+        <div class="row"><div class="k">백화점 — 운영자가 하나</div><div class="v">고객의 체류 시간이 곧 «전체» 매출이다 → 그래서 <b>휴식을 건물 안으로 들인다</b>(라운지·정원).</div></div>
+        <div class="row"><div class="k">성수 — 운영자가 여럿</div><div class="v">필지마다 주인이 다르다. 손님이 머물러도 «내 평수» 매출은 아니다 → 그래서 <b>휴식이 밖으로 밀린다.</b></div></div>
+      </div>
+      <p class="pull">성수는 <em>휴식을 수출하고, 피로를 수입합니다.</em></p>
+      <p class="body">지친 사람이 밖으로 걸어 나가며 상권은 넓어지고, <b>그 비용은 방문자의 몸이 냅니다.</b>
+        제가 27℃ 고습에서 쌓은 피로는, 그날의 컨디션이 아니라 <b>구조가 만들어낸 산출물</b>이었습니다 —
+        제 몸이 이 동네의 «휴식 외부화»를 대신 지불한 셈입니다.</p>
+      <p class="aside"><span class="am">«비어 있는지»가 아니라 «왜 비었는지»</span> 한 칸이 비는 «이유»를 소유 구조에서 찾은 대목입니다.
+        회사에서 이건 — 어떤 자리가 «비어 있는지»가 아니라 <b>왜 비었는지</b>를 묻는 것과 같습니다. 그 «왜»에 내가 들어갈 틈이 있습니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §7 게이트=상품 ══ -->
+  <figure class="lead frame">
+    <img src="../이미지/포폴/성수_pointofview_줄.jpg" alt="POINT OF VIEW 성수 대기줄">
+    <figcaption><b>POINT OF VIEW 성수</b> — 큐레이션 스토어 앞 대기줄. 사진: 김성진 · 2026.07.04</figcaption>
+  </figure>
+  <div class="spread">
+    <div class="gutter"><div class="num serif">07</div><div class="lbl">첫 번째 발견</div></div>
+    <div class="col">
+      <div class="eyebrow">The gate itself is the product</div>
+      <h2 class="disp">희소한 <em>입장</em>이 —<br>이 동네의 화폐입니다</h2>
+      <p class="body">하루 동안 «입장을 거르는» 네 단계를 전부 목격했습니다. 위로 올라갈수록 <b>우연히 지나가던 방문자가 배제됩니다.</b></p>
+      <div class="list">
+        <div class="row"><div class="k">① 현장 줄</div><div class="v">지나가다 합류할 수 있다 — 가장 열려 있다.</div></div>
+        <div class="row"><div class="k">② 웨이팅 앱</div><div class="v">현장 도착을 전제한다 — 폰이 없으면 못 선다.</div></div>
+        <div class="row"><div class="k">③ 사전 예약</div><div class="v">미리 당첨돼 있어야 한다 — 그날 마음으론 못 들어간다.</div></div>
+        <div class="row"><div class="k">④ 어드바이저 슬롯</div><div class="v">사람이 직접 관리하는 줄 — 가장 닫혀 있다.</div></div>
+      </div>
+      <p class="body">공통점은 하나였습니다. <b>차별점이 없어서 대기를 시키는 게 아니라, 대기 그 자체를 팔고 있었습니다.</b> 게이트가 곧 상품이었습니다.</p>
+      <p class="aside"><span class="am">인기가 아니라 «연출»</span> 거부는 적을 만들지만 <b>대기는 욕망을 만듭니다.</b> 그리고 <b>전부가 줄을 세우면, 그건 인기가 아니라 «연출»입니다.</b>
+        — 여기서부터 관찰이 «명제»로 넘어갑니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §8 블루 엘리펀트 ══ -->
+  <figure class="lead frame">
+    <img src="../이미지/포폴/블루엘리펀트_무대.jpg" alt="블루 엘리펀트 성수 야경 외관">
+    <figcaption><b>블루 엘리펀트 성수</b> — 밤이면 건물 전체가 «무대»가 되는 1,000평 극장식 리테일. 출처: 블루 엘리펀트 공식 홈페이지</figcaption>
+  </figure>
+  <div class="spread">
+    <div class="gutter"><div class="num serif">08</div><div class="lbl">두 번째 발견</div></div>
+    <div class="col">
+      <div class="eyebrow">A thousand pyeong, a palm of product</div>
+      <h2 class="disp">1,000평인데, 상품은 <em>얼굴만</em> 합니다</h2>
+      <p class="body">지친 상태로 우연히 들어간 곳이 <b>블루 엘리펀트 성수</b>였습니다. 1,000평 매장에 상품은 선글라스 하나 —
+        손바닥만 합니다. 남는 공간은 <b>미술 설치와 DJ 부스</b>가 채우고 있었습니다.</p>
+      <p class="body">처음엔 그 스펙터클이 «과한 연출»로 보였습니다. 그런데 되짚으니 반대였습니다 —
+        <b>연출이 아니라, 상품이 작아서 생긴 «필연»</b>이었습니다. 1,000평을 선글라스로 채울 수는 없으니까요.</p>
+      <div class="list">
+        <div class="row"><div class="k">부피가 작다</div><div class="v">선글라스는 공간을 거의 먹지 않는다 — 벽도 바닥도 남는다.</div></div>
+        <div class="row"><div class="k">단가가 높다</div><div class="v">남는 공간을 «미술»로 채울 여유가 생긴다.</div></div>
+        <div class="row"><div class="k">그래서</div><div class="v">아이웨어는 극장식 리테일에 구조적으로 가장 잘 맞는 상품이다.</div></div>
+      </div>
+      <blockquote class="quote">“Not a spectacle, but an <span style="font-style:normal;color:var(--och)">inevitability.</span>”
+        <span class="kr">무대 9, 상품 1. 그 비율은 취향이 아니라 상품이 정했다.</span></blockquote>
+      <p class="body">블루 엘리펀트가 «예술을 한다»기보다, <b>선글라스라는 상품이 그 형식을 요구</b>한 것에 가깝습니다.</p>
+      <p class="aside"><span class="am">감탄은 관광기, 필연의 추적은 분석</span> “대단하다”가 아니라 <b>“왜 이렇게 될 수밖에 없었나”</b>로 되짚은 대목입니다.
+        회사의 «화려한 사업»도 같은 눈으로 — 무엇이 그걸 가능하게 했는지 되짚습니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §9 명제 + 이론 ══ -->
+  <div class="spread">
+    <div class="gutter"><div class="num serif">09</div><div class="lbl">하나의 명제</div></div>
+    <div class="col">
+      <div class="eyebrow">Why do people come?</div>
+      <h2 class="disp">그럼 사람들은 <em>왜</em> 여기 오는가</h2>
+      <p class="body">게이트, 무대, 계산대 — 전부 «입장을 거르고, 기다리게 하고, 선택을 대신 정해주는» 쪽으로 정렬돼 있었습니다.
+        그런데도 사람이 몰립니다. 발견 다섯을 하나로 누르면 명제가 남습니다.</p>
+      <p class="pull">사람들은 여기에 — <em>객체가 되러</em> 옵니다.</p>
+      <p class="body">매일 스스로 선택하고 책임지느라 지친 세대에게, <b>줄 세워지는 것이 오히려 «휴식»이자 «사치»</b>가 됐습니다.
+        주말에 돈을 내고 와서, 기꺼이 선택권을 반납합니다. 이게 성수가 파는 진짜 상품이었습니다.</p>
+      <p class="body">이 명제는 걷기 <b>전</b>에 세운 게 아닙니다. 걷고 나서, 관찰이 가리키는 곳에 이미 있던 이론을 찾아 붙였습니다.</p>
+      <div class="theory">
+        <div class="t"><span class="who">Pine &amp; Gilmore <i>(1998)</i></span> 체험경제론 — <span class="what">연출된 체험 그 자체를 판다.</span></div>
+        <div class="t"><span class="who">Aronson &amp; Mills <i>(1959)</i></span> 노력 정당화 — <span class="what">힘들게 들어갈수록 값지게 느낀다.</span></div>
+        <div class="t"><span class="who">Maister</span> 대기 심리학 — <span class="what">의미가 부여된 대기는 «기대»가 된다.</span></div>
+        <div class="t"><span class="who">Schwartz · Baumeister</span> 선택의 역설 — <span class="what">선택을 넘기는 것이 곧 해방이다.</span></div>
+      </div>
+      <p class="aside"><span class="am">순서를 정직하게 밝힌다</span> 관찰 → 명제 → 이론의 순서를 <b>정직하게 밝힙니다.</b> 이론을 먼저 읽고 끼워 맞춘 게 아니라,
+        걷고 나서 찾아 붙였다는 것 — 이 순서가 분석의 «진짜»를 담보합니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §10 다이칸야마 궤적 ══ -->
+  <figure class="lead frame">
+    <img src="../이미지/포폴/다이칸야마_츠타야.jpg" alt="다이칸야마 T-SITE 츠타야 서점">
+    <figcaption><b>다이칸야마 T-SITE (2011)</b> — 체험형 리테일의 완성형. 출처: 다이칸야마 T-SITE 공식</figcaption>
+  </figure>
+  <div class="spread">
+    <div class="gutter"><div class="num serif">10</div><div class="lbl">성수는 어디로 가는가</div></div>
+    <div class="col">
+      <div class="eyebrow">A neighborhood that went first</div>
+      <h2 class="disp">먼저 간 동네를 봅니다 —<br>도쿄 <em>다이칸야마</em></h2>
+      <p class="body">지금까지는 성수의 «한 장면»이었습니다. 스냅샷은 «지금»까지만 말합니다 — 어디로 <b>가는지</b>는 못 말합니다.
+        방향을 읽으려면 <b>같은 길을 한 세대 먼저 간 동네</b>를 봐야 합니다. 성수의 «다 자란» 모습을 가늠하기 좋은 선례가
+        도쿄 <b>다이칸야마</b>입니다 — 같은 «저층·디자인 주도» 창의지구가 먼저 지나온 길입니다.</p>
+
+      <div class="subhead">① 공간은 이렇게 늙었습니다</div>
+      <div class="list">
+        <div class="row"><div class="k">천천히 지었다</div><div class="v">랜드마크 <b>힐사이드 테라스</b>는 건축가 마키 후미히코가 <b>1969년부터 약 30년에 걸쳐 단계적으로</b> 쌓았습니다. 성수가 «빨리 뜬» 것과 정반대 — 설계가 시간을 들였습니다.</div></div>
+        <div class="row"><div class="k">체험으로 옮겨갔다</div><div class="v"><b>다이칸야마 T-SITE · 츠타야 서점</b>(2011)은 «숲속 도서관» — 책을 파는 게 아니라 <b>머무는 경험</b>을 팝니다. 성수의 체험형 매장이 향하는 완성형에 가깝습니다.</div></div>
+        <div class="row"><div class="k">그리고 다듬어진다 <small>추론</small></div><div class="v">임대료가 오르고, 날것이 빠지고, 큐레이션이 촘촘해집니다. 성수의 «다음»으로 유력한 방향입니다.</div></div>
+      </div>
+
+      <div class="subhead">② 그래서 «직무»에 무슨 일이 벌어졌나</div>
+      <p class="body">여기가 이 문서가 진짜 보려던 지점입니다. 공간이 «체험»으로 옮겨가면, <b>일하는 자리도 같이 옮겨갑니다.</b></p>
+      <div class="rel three">
+        <div class="h"><div>리테일의 일</div><div>예전 · 판매</div><div>지금·다음 · 경험</div></div>
+        <div class="r gap"><div class="lab">하는 일</div><div class="a">상품을 «판다»</div><div class="b">맥락을 «큐레이션»한다</div></div>
+        <div class="r gap"><div class="lab">필요한 것</div><div class="a">상품 지식</div><div class="b">취향 · 서사 · 공간 감각</div></div>
+      </div>
+      <p class="body"><b>츠타야 서점</b>(蔦屋書店)부터 봅니다 — 일본의 라이프스타일 서점 체인으로,
+        책을 «분류»가 아니라 <b>«취향·주제»로 묶어</b> 파는 곳입니다(요리 책 옆에 조리도구·식기가 같이 놓이는 식). 다이칸야마 T-SITE가 그 대표 매장이고요.
+        그 핵심이 «<b>콘시어지</b>»입니다 — 여행·요리·예술처럼 분야마다 <b>전문가를 두고, 책을 꽂는 게 아니라 «그 취향의 삶»을 큐레이션</b>합니다. 점원이 아니라 «분야 편집자»에 가깝습니다.</p>
+      <p class="body">츠타야는 <b>다이칸야마</b>의 얘기입니다. 그런데 이 «노동 이동»은 <b>다이칸야마 한 동네에 갇힌 게 아닙니다</b> —
+        같은 이동이 여러 곳에서, 그리고 <b>이미 성수에서도</b> 보입니다.</p>
+      <div class="list">
+        <div class="row"><div class="k">애플 «Today at Apple»<small>전 세계</small></div><div class="v">직원이 물건을 파는 게 아니라 <b>강좌를 여는 사람</b>이 됐습니다 — 판매대가 교실이 됐죠.</div></div>
+        <div class="row"><div class="k">블루 엘리펀트<small>성수 · §8</small></div><div class="v">매장 직원이 판매원보다 <b>«전시 안내자»</b>에 가깝습니다 — <b>성수에서 이미 시작된</b> 자리입니다.</div></div>
+        <div class="row"><div class="k">새로 생긴 자리<small>채용시장 · 추론</small></div><div class="v">공간 기획 · 브랜드 경험(BX) · 팝업 기획 — 십 년 전엔 없던 자리가 공고에 생겼습니다.</div></div>
+      </div>
+      <p class="body">정리하면 — 리테일 노동이 <b>«상품을 파는 일»에서 «경험을 설계하고 안내하는 일»로</b> 옮겨가는 <b>«흐름»</b>이고,
+        <b>다이칸야마는 그게 «다 자란» 곳, 성수는 «막 시작한» 곳</b>입니다. 그래서 다이칸야마가 성수의 «다음»을 보여줍니다.</p>
+      <div class="grid4">
+        <figure><img src="../이미지/포폴/성수_kith.jpg" alt="KITH 성수"><div class="t">KITH 성수</div></figure>
+        <figure><img src="../이미지/포폴/성수_oliveyoung.jpg" alt="올리브영 성수"><div class="t">OLIVE YOUNG 성수</div></figure>
+        <figure><img src="../이미지/포폴/성수_dior.jpg" alt="디올 성수"><div class="t">DIOR 성수</div></figure>
+        <figure><img src="../이미지/포폴/성수_nudake.jpg" alt="누데이크 성수"><div class="t">nudake · MAYA 성수</div></figure>
+      </div>
+      <p class="gcap">성수에 «이미» 들어온 브랜드 경험 매장들 — 파는 자리보다 «연출·큐레이션»하는 자리를 부른다. 사진: 김성진 · 2026.07.04</p>
+      <p class="aside"><span class="am">시장을 «찍는» 게 아니라 «근거로» 읽는 법</span> 선례(다이칸야마)의 궤적에서 — 성수의 다음, 그리고 <b>거기서 열리고 닫히는 자리</b>를 읽습니다.
+        여기 «다음»과 «직무 이동»은 관찰이 아니라 <b>선례로 읽은 추론</b>입니다(§11 한계와 같은 정직).</p>
+    </div>
+  </div>
+
+  <!-- ══ §11 한계 ══ -->
+  <div class="spread">
+    <div class="gutter"><div class="num serif">11</div><div class="lbl">여기서 멈춥니다</div></div>
+    <div class="col">
+      <div class="eyebrow">Where seeing ends, guessing begins</div>
+      <h2 class="disp">여기까지가 <em>본 것</em>이고,<br>여기부터는 <em>추측</em>입니다</h2>
+      <p class="body">이 조사가 다루지 못한 것을 먼저 적습니다. 숨기면 질문 하나에 무너지지만, 적어 두면 그 질문이 오히려 다음 조사가 됩니다.</p>
+      <div class="list">
+        <div class="row"><div class="k">1회 · 하루</div><div class="v">토요일 오후 한 번의 관찰이다. 평일은 인파도 대기도 다를 수 있다.</div></div>
+        <div class="row"><div class="k">‘혼자’가 변수였나</div><div class="v">동행이 있는 손님이 대기 없이 들어갔는지는 확인하지 못했다.</div></div>
+        <div class="row"><div class="k">거리 데이터 부재</div><div class="v">도보 관찰이라 매장 수·체류 시간이 수치로 없다. 인상의 정량화는 못 했다.</div></div>
+        <div class="row"><div class="k">수익 구조는 추정</div><div class="v">누가 무엇으로 버는지는 전부 «외부 추정»이다 — 장부를 본 게 아니다.</div></div>
+        <div class="row"><div class="k">안 들어간 곳</div><div class="v">대림창고 내부·어니언은 27℃ 피로로 중단했다 — 표본에서 빠졌다.</div></div>
+        <div class="row"><div class="k">의도 여부</div><div class="v">이 모든 게 «연출»인지 «관리의 결과»인지 — 어느 쪽도 단정하지 않는다.</div></div>
+      </div>
+      <p class="body">대부분의 포트폴리오는 잘된 것만 씁니다. 저는 <b>안 본 것을 적어 두는 편이 낫다</b>고 생각합니다 — 질문 하나에 무너지지 않으려면.</p>
+      <p class="aside"><span class="am">이 문서에서 가장 중요한 페이지</span> <b>관광기는 자기가 본 게 다인 줄 압니다. 포트폴리오는 자기가 못 본 걸 압니다.</b>
+        한계를 아는 것이 곧 «분석의 신뢰»입니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §12 방법 회수 ══ -->
+  <div class="spread">
+    <div class="gutter"><div class="num serif">12</div><div class="lbl">이 문서를 만든 방법</div></div>
+    <div class="col">
+      <div class="eyebrow">Not written — recorded</div>
+      <h2 class="disp">새로 쓴 게 아닙니다 —<br><em>쓴 자리</em>를 그대로 적습니다</h2>
+      <p class="body">지금까지의 관찰은 즉흥이 아니라, §0에서 꺼내 둔 도구 셋과 축 넷을 실제로 굴린 결과입니다. 어디서 무엇을 썼는지 그대로 옮깁니다.</p>
+      <div class="list">
+        <div class="row"><div class="k">CT 메모<small>나를 찍는다</small></div><div class="v">§1 — 그 5분을 <b>감정어 없이</b> 시각과 몸으로만 기록.</div></div>
+        <div class="row"><div class="k">불편 메모<small>현장을 찍는다</small></div><div class="v">§2 본 것/추측 장부 · §7–§8 발견 둘.</div></div>
+        <div class="row"><div class="k">답사 메모<small>바깥을 찍는다</small></div><div class="v">§3 14구간 · §4 가장자리(포어플랜) · §5 지붕 벗기기.</div></div>
+        <div class="row"><div class="k">① 타깃</div><div class="v">§2 “지나가는 사람이 기준” · §3 방문객 8 : 2.</div></div>
+        <div class="row"><div class="k">② 맞바꿈</div><div class="v">§5 «쉼» 한 칸 · §8 무대 9 : 상품 1.</div></div>
+        <div class="row"><div class="k">③ 자원</div><div class="v">§6 운영자가 하나가 아니다.</div></div>
+        <div class="row"><div class="k">④ 수익</div><div class="v">§7 게이트가 곧 상품 · §8 무대 9 : 상품 1 · §11 한계.</div></div>
+      </div>
+      <p class="body"><b>발견 다섯 · 명제 하나 · 안 본 것 여섯.</b> 그중 약 <b>75%는 가지 않았으면 못 얻었을 것</b>입니다 —
+        이 문서의 값은 «걸어서 직접 봤다»는 데 있습니다.</p>
+    </div>
+  </div>
+
+  <!-- ══ §13 회사·진로 전이 ══ -->
+  <div class="spread">
+    <div class="gutter"><div class="num serif">13</div><div class="lbl">이 눈을 어디에 또 대나</div></div>
+    <div class="col">
+      <div class="eyebrow">Two places this lens points</div>
+      <h2 class="disp">이 눈은 <em>두 곳</em>에 댑니다 —<br>겨눌 회사, 그리고 <em>내 방향</em></h2>
+      <p class="body">이 문서가 증명하려던 건 성수가 아니라 <b>«눈»</b>이었습니다. 그 눈이 작동하는지 보였으니, 이제 대상만 바꿉니다.
+        그런데 대볼 곳이 하나가 아닙니다 — 회사를 «겨누는» 데(취업)와, <b>내가 어디로 향할지 «방향»을 잡는 데(진로)</b> 둘 다입니다.</p>
+
+      <div class="subhead">① 겨누기 — 지원할 회사에</div>
+      <p class="body">성수에 던진 질문은, 문장 하나 바꾸지 않고 회사에 그대로 들어갑니다.</p>
+      <div class="rel two">
+        <div class="h"><div>성수에 물은 것</div><div>회사에 물을 것</div></div>
+        <div class="r"><div class="a">어디에 돈과 공간을 썼나</div><div class="b">어디에 사람을 뽑는가</div></div>
+        <div class="r"><div class="a">무엇을 얻으려고 무엇을 버렸나</div><div class="b">어느 자리를 새로 만들었나</div></div>
+        <div class="r"><div class="a">누가 운영하나</div><div class="b">누가 결정하나</div></div>
+      </div>
+      <p class="body"><b>매장의 평수가 그 매장의 우선순위를 말하듯 — 채용공고가 그 회사의 우선순위를 말합니다.</b>
+        한 회사를 이렇게 읽으면 그 회사에 맞춘 지원서가 나옵니다. 그게 «조준»입니다.</p>
+
+      <div class="subhead">② 방향 잡기 — 나 자신에게</div>
+      <p class="body">그런데 조준보다 앞에 쓸 데가 있습니다. 성수에서 저는 <b>정반대의 두 설계</b>를 봤습니다 —
+        희소함을 얻고 접근성을 버린 곳(포어플랜)과, 그 반대로 문을 활짝 연 본선. <b>어느 쪽에 내가 끌리는지</b>가,
+        곧 «내가 어떤 맞바꿈 속에서 일하고 싶은가»입니다.</p>
+      <p class="body">다만 방향은 여기서 «혼자» 나오지 않습니다. <b>§10에서 이 눈으로 «시장이 어디로 가는지»</b>(자리가 어디로 옮겨가는지)를 읽었죠 —
+        거기에 방금 «내가 어느 쪽에 끌리는가»를 <b>겹치면</b>, 그 겹치는 지점이 방향, 곧 진로입니다. <b>두 화살표가 만나는 자리</b>입니다.</p>
+      <p class="body">방향이 잡힌 «다음»에야 겨눌 과녁(회사 하나)이 정해집니다 — <b>진로가 먼저, 취업이 그다음</b>입니다.
+        회사 읽기 자체가 방향을 주는 게 아닙니다. 내 끌림(거울)과 시장의 궤적(§10)이 만나 방향이 서고, 회사 읽기는 그 방향을 «겨누는» 도구입니다.</p>
+      <p class="aside"><span class="am">같은 렌즈를 나 자신과 시장에</span> 역설계는 «회사를 겨누는 기술»로 끝나지 않습니다. 같은 렌즈를 <b>나 자신과 시장</b>에 돌리면 —
+        내가 어떤 결정들 곁에 있고 싶은지, 즉 <b>방향(진로)</b>이 드러납니다. 취업은 그 방향으로 겨눈 한 발입니다.</p>
+    </div>
+  </div>
+
+  <div class="close">
+    <p class="big">이 문서는 새로 쓴 게 아닙니다 — 답사 노트의 <em>순서만 바꿨습니다.</em><br>
+      같은 순서로, 먼저 <em>내가 어디로 향할지(진로)</em>를 — 그다음 <em>지원할 회사(취업)</em>를 읽어냅니다.</p>
+  </div>
+
+</div>
+</body>
+</html>
